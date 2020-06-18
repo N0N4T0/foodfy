@@ -1,0 +1,25 @@
+.main-sobre {
+    padding-top: 20px;
+    margin: 0 auto 0;
+    max-width: 940px;
+}
+
+.main-sobre h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.main-sobre p { 
+    margin-bottom: 30px;
+    font-size: 18px;
+    line-height: 28px;
+    color: #444444;
+}
+
+#active h2{
+    font-weight: bold;
+}
+
+#active:hover {
+    color: unset;
+}

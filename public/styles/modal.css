@@ -1,0 +1,35 @@
+.modal-overlay {
+    background-color: #bb2a2a;
+    border-radius: 16px;
+    width: 75%;
+    height: 65%;
+    position: fixed;
+    left: 12.5%;
+    top: 31.6%;
+
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal {
+    background-color: white;
+    width: 96%;
+    height: 90%;
+    margin: 3vh auto;
+    position: relative;
+    border-radius: 15px;
+}
+
+.modal .close-modal {
+    color: red;
+    cursor: pointer;
+
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}

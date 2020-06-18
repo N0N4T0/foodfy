@@ -1,0 +1,7 @@
+#active h2{
+    font-weight: bold;
+}
+
+#active:hover {
+    color: unset;
+}
