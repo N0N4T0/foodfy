@@ -78,10 +78,13 @@ header nav h2 {
     font-size: 18px;
     color: #000000;
     line-height: 28px;
+    text-align: left;
 }
 
 #banner-img {
-    margin-right: 7.1%;
+    position: absolute;
+    left: 60%;
+    top: 21%;
 }
 
 footer {
