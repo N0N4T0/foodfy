@@ -34,57 +34,20 @@
         <h1>Mais acessados</h1>
 
         <div class="cards">
+            
+            {% for recipe in recipes %}
             <div class="card">
                 <a>
-                    <img src="/layouts/assets/burger.png" alt="Triplo bacon burguer">
-                    <h2>Triplo bacon burguer</h2>
-                    <h3>por Jorge Relato</h3>
+                    <img src="{{recipe.image}}" alt="{{recipe.title}}">
+                    <h2>{{recipe.title}}</h2>
+                    <h3>{{recipe.author}}</h3>
                 </a>
             </div>
-
-            <div class="card">
-                <a>
-                    <img src="/layouts/assets/pizza.png" alt="Pizza 4 estações">
-                    <h2>Pizza 4 estações</h2>
-                    <h3>por Fabiana Melo</h3>
-                </a>
-            </div>
-
-            <div class="card">
-                <a>
-                    <img src="/layouts/assets/espaguete.png" alt="Espaguete ao molho">
-                    <h2>Espaguete ao molho</h2>
-                    <h3>por Júlia Kinoto</h3>
-                </a>
-            </div>
-
-            <div class="card">
-                <a>
-                    <img src="/layouts/assets/lasanha.png" alt="Lasanha mac n' cheese">
-                    <h2>Lasanha mac n' cheese</h2>
-                    <h3>por Juliano Vieira</h3>
-                </a>
-            </div>
-
-            <div class="card">
-                <a>
-                    <img src="/layouts/assets/doce.png" alt="Docinhos pão-do-céu">
-                    <h2>Docinhos pão-do-céu</h2>
-                    <h3>por Ricardo Golvea</h3>
-                </a>
-            </div>
-
-            <div class="card">
-                <a>
-                    <img src="/layouts/assets/asinhas.png" alt="Asinhas de frango ao barbecue">
-                    <h2>Asinhas de frango ao barbecue</h2>
-                    <h3>por Vania Steroski</h3>
-                </a>
-            </div>
-
+            {% endfor %}
+           
         </div>
 
-        <div class="modal-overlay">
+        {# <div class="modal-overlay">
             <div class="modal">
                 <img src="/layouts/assets/asinhas.png" alt="Asinhas de frango">
                 <h2>Asinhas de frango ao barbecue</h2>
@@ -94,7 +57,7 @@
                     <h3>Sair</h3>
                 </a>
             </div>
-        </div>
+        </div> #}
     </main>
     
     <script src="/javascript/script.js"></script>
