@@ -6,7 +6,7 @@ const data = require("./data")
 
 server.use(express.static('public'))
 
-server.set("view engine", "html")
+server.set("view engine", "njk")
 
 nunjucks.configure("public/views", {
     express: server,
