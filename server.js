@@ -2,15 +2,29 @@ const express = require('express')
 const nunjucks = require('nunjucks')
 
 const server = express()
+const data = require("./data")
 
 server.use(express.static('public'))
 
-server.set("view engine", "njk")
+server.set("view engine", "html")
 
+nunjucks.configure("public/views", {
+    express: server,
+    autoescape: false,
+    noCache: true
+})
 
 //rotas
 server.get("/", function(req, res){
-    return res.send("Hello World")
+    return res.render("index", { recipe: data })
+})
+
+server.get("/about", function(req, res){
+    return res.render("about")
+})
+
+server.get("/recipes", function(req, res){
+    return res.render("recipes")
 })
 
 //porta
