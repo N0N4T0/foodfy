@@ -36,7 +36,7 @@
         <div class="cards">
             
             {% for recipe in recipes %}
-            <div class="card">
+            <div class="card" name="{{recipe.title}}">
                 <a>
                     <img src="{{recipe.image}}" alt="{{recipe.title}}">
                     <h2>{{recipe.title}}</h2>
@@ -46,18 +46,6 @@
             {% endfor %}
            
         </div>
-
-        {# <div class="modal-overlay">
-            <div class="modal">
-                <img src="/layouts/assets/asinhas.png" alt="Asinhas de frango">
-                <h2>Asinhas de frango ao barbecue</h2>
-                <p>por Vania Steroski</p>
-                
-                <a class="close-modal">
-                    <h3>Sair</h3>
-                </a>
-            </div>
-        </div> #}
     </main>
     
     <script src="/javascript/script.js"></script>

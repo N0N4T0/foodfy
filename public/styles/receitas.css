@@ -5,3 +5,57 @@
 #active:hover {
     color: unset;
 }
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+h1, h2 {
+    color: var(--color-black);
+}
+
+main section img {
+    border-radius: 15px;
+    margin-bottom: 50px;
+}
+
+main section h1, p {
+    text-align: center;
+}
+
+main section p {
+    margin-top: 4px;
+    margin-bottom: 50px;
+    color: #777777;
+    font-size: 20px;
+}
+
+span {
+    font-size: 12px;
+    color: #999999;
+    cursor: pointer;
+    margin-left: 8px;
+    margin-bottom: 20px;
+}
+
+.ingredientes h2, .modo-de-preparo h2, .informacoes-adicionais h2 {
+    display: contents;
+}
+
+.ingredientes, .modo-de-preparo, .informacoes-adicionais {
+    margin-bottom: 40px;
+}
+
+.ingredientes li, .modo-de-preparo li,
+.informacoes-adicionais p {
+    font-size: 18px;
+    line-height: 28px;
+    text-align: left;
+}
+
+.ingredientes ul, .modo-de-preparo ul,
+.informacoes-adicionais p {
+    margin-top: 20px;
+    margin-inline-start: 18px;
+}
