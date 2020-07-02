@@ -16,8 +16,8 @@ body {
 }
 
 header,
-main {
-    margin: 36px auto;
+main, .cards {
+    margin: 36px auto 0;
     max-width: 940px;
 } 
 
@@ -31,6 +31,10 @@ header nav a {
     text-decoration: none;
     color: var(--color-black);
     margin-right: 2.1%;
+}
+
+header nav a.active {
+    color: rgb(255, 145, 0); 
 }
 
 header nav a:first-child {
@@ -60,6 +64,7 @@ header nav h2 {
     border-radius: 30px;
     background-color: #FBDFDB;
     align-items: center;
+    margin-bottom: 50px;
 }
 
 .banner-text {

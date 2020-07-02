@@ -9,48 +9,19 @@
 
 
 {% block content %}
-            <a href="/about">
-                <h2>Sobre</h2>
+    <div class="cards">
+            
+        {% for recipe in recipes %}
+        <div class="card" name="{{recipe.title}}">
+            <a>
+                <img src="{{recipe.image}}" alt="{{recipe.title}}">
+                <h2>{{recipe.title}}</h2>
+                <h3>por {{recipe.author}}</h3>
             </a>
-            <a id="active">
-                <h2>Receitas</h2>
-            </a>
-        </nav>  
-    </header>
-
-    <main>
-        <section>
-            <img src="{{recipe.image}}" alt="Image of {{recipe.title}}">
-            <h1>{{recipe.title}}</h1>
-            <p>por {{recipe.author}}</p>
-        </section>
-        
-        <div class="ingredientes">
-            <h2>Ingredientes</h2>
-            <span class="hide">ESCONDER</span>
-            <ul>
-                {% for ingredient in recipe.ingredients%}
-                <li>{{ingredient}}</li>
-                {% endfor %}
-            </ul>
         </div>
-        
-        <div class="modo-de-preparo">
-            <h2>Modo de Preparo</h2>
-            <span class="hide">ESCONDER</span>
-            <ul>
-                {% for steps in recipe.preparation %}
-                <li>{{steps}}</li>
-                {% endfor %}
-            </ul>
-        </div>
-
-        <div class="informacoes-adicionais">
-            <h2>Informações adcionais</h2>
-            <span class="hide">ESCONDER</span>
-            <p>{{recipe.information}}</p>
-        </div>
-    </main>
+        {% endfor %}
+           
+    </div>
          
     <script src="/javascript/script.js"></script>
 

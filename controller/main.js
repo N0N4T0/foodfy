@@ -27,5 +27,5 @@ exports.recipe = function(req, res){
         return res.send("Receita não encontrada")
     }
 
-    return res.render("recipes", { recipe:data[index] })
+    return res.render("main/recipe", { recipe:data[index] })
 }

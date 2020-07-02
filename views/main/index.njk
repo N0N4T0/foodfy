@@ -9,14 +9,7 @@
 
 
 {% block content %}
-            <a href="/about">
-                <h2>Sobre</h2>
-            </a>
-            <a href="/recipes">
-                <h2>Receitas</h2>
-            </a>
-        </nav>
-
+    <main>
         <div class="banner">
             <div class="banner-text">
                 <h1>As melhores receitas</h1>
@@ -28,9 +21,8 @@
                 <img src="/layouts/assets/chef.png" alt="Chef">
             </div>    
         </div>
-    </header>
-
-    <main>
+    
+    
         <h1>Mais acessados</h1>
 
         <div class="cards">
@@ -40,7 +32,7 @@
                 <a>
                     <img src="{{recipe.image}}" alt="{{recipe.title}}">
                     <h2>{{recipe.title}}</h2>
-                    <h3>{{recipe.author}}</h3>
+                    <h3>por {{recipe.author}}</h3>
                 </a>
             </div>
             {% endfor %}

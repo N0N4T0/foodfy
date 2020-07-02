@@ -10,7 +10,8 @@
 
         <link rel="stylesheet" href="/styles/main.css">
         <link rel="stylesheet" href="/styles/cards.css">   
-
+        <link rel="stylesheet" href="/styles/receitas.css">   
+        <link rel="stylesheet" href="/styles/sobre.css">   
     </head>
 
     <body>
@@ -20,7 +21,16 @@
                     <h1>Foodfy</h1>
                 </a>
 
-            {% block content %} {% endblock %}
+                <a href="/about">
+                    <h2>Sobre</h2>
+                </a>
+                
+                <a href="/recipes">
+                    <h2>Receitas</h2>
+                </a>
+            </nav>
+        </header>    
+        {% block content %} {% endblock %}
 
         <footer>
             <h3>Todos direitos reservados, receitas Foody</h3>
