@@ -58,6 +58,10 @@ header nav h2 {
    font-weight: normal;
 }
 
+.information.hidden {
+    display: none;
+}
+
 .banner {
     display: flex;
     height: 366px;
