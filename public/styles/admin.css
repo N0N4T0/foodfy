@@ -1,0 +1,83 @@
+.menu {
+    width: 100%;
+    background-color: var(--color-black);
+    height: 80px;
+}
+
+#menu-img {
+    max-width: 940px;
+    margin: 0 auto 76px auto;
+    padding-top: 27px;
+}
+
+.card-recipe {
+    min-height: 400px;
+
+    max-width: 940px;
+    margin: 0 auto 76px auto;
+}
+
+.card-recipe h1 {
+    font-size: 24px;
+    position: absolute;
+}
+
+.details .item {
+    padding-bottom: 30px;
+}
+
+.details .item:first-child {
+    padding-top: 60px;
+}
+
+.details .item div:nth-child(1) {
+    font-size: 16px;
+    color: var(--color-black);
+    letter-spacing: 0.7px;
+    font-weight: bold;
+}
+
+.details .item div:nth-child(2) {
+    color: #555555;
+    font-weight: bold;
+    font-size: 18px;
+    padding-top: 10px;
+}
+
+.details .item a {
+    margin-top: 15px;
+    color: #6558c3;
+}
+
+
+input {
+    width: 100%;
+    border: 1px solid #dddddd;
+    outline: none;
+    color: #555555;
+    font-weight: bold;
+    font-size: 18px;
+    height: 49px;
+    padding-left: 10px;
+}
+
+.details .text-area {
+    height: 257px;
+}
+
+button[type="submit"] {
+    padding: 9px 20px;
+    background-color: #6558c3;
+    border-radius: 4px;
+    font-family: 'Roboto', sans-serif;
+
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    border-color: unset;
+
+    position: relative;
+    bottom: 765px;
+    left: 800px;
+}
