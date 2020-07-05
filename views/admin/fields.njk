@@ -1,48 +1,70 @@
 <div class="item">
+    <div>Nome da receita</div>
+    <div>
+        <input 
+            type="text" 
+            name="title"
+            value="{{recipe.title}}">
+    </div>
+</div>
+
+<div class="item">
+    <div>Nome do autor</div>
+    <div>
+        <input 
+            type="text"
+            name="author"
+            value="{{recipe.author}}">
+    </div>
+</div>
+
+<div class="item">
 <div>Imagem da receita</div>
     <div>
         <input
             type="url" 
-            name="receita_url"
+            name="image"
             placeholder="http://"
-            value="{{instructor.receita_url}}"
+            value="{{recipe.image}}"
         >
     </div>
 </div>
 
-<div class="item">
+<div class="item" id="ingredients">
     <div>Ingredientes</div>
-    <div>
-        <input
-            type="text"
-            name="name"
-            value="{{instructor.name}}"
-        >
-        <div><a>Adcionar novo ingrediente</a></div>
-    </div>
+    {% for ingredient in recipe.ingredients %}
+        <div class="ingredients">
+            <input type="text" name="ingredients[]" value="{{ingredient}}">
+        </div>
+    {% else %}
+        <div class="ingredients">
+            <input type="text" name="ingredients[]">
+        </div>
+    {% endfor %}
 </div>
+<div class="add-item add-ingredient"><a>Adcionar novo ingrediente</a></div>
 
-<div class="item">
+<div class="item" id="step">
     <div>Modo de preparo</div>
-    <div>
-        <input
-            type="text"
-            name="name"
-            value="{{instructor.name}}"
-        >
-        <div><a>Adcionar novo passo</a></div>
-    </div>
+    {% for preparation in recipe.preparation %}
+        <div class="steps">
+            <input type="text" name="preparation[]" value="{{preparation}}">
+        </div>
+    {% else %}
+        <div class="steps">
+            <input type="text" name="preparation[]">
+        </div>
+    {% endfor %}
 </div>
+<div class="add-item add-step"><a>Adcionar novo passo</a></div>
 
 <div class="item">
     <div>Informações adcionais</div>
     <div>
-        <input class="text-area"
-            type="text"
-            name="name"
-            value="{{instructor.name}}"
-        >
+        <textarea 
+            class="text-area"
+            name="information">
+                {{recipe.information}}
+        </textarea>
     </div>
 </div>
-
-    <button type="submit">Salvar receita</button>

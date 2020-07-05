@@ -17,13 +17,34 @@
     margin: 0 auto 76px auto;
 }
 
+.title {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 .card-recipe h1 {
     font-size: 24px;
-    position: absolute;
+    align-self: center;
+}
+
+button[type="submit"] {
+    padding: 9px 20px;
+    background-color: #6558c3;
+    border-radius: 4px;
+    font-family: 'Roboto', sans-serif;
+
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    border-color: unset;
+
+    max-width: 143px;
+    justify-self: self-end;
 }
 
 .details .item {
-    padding-bottom: 30px;
+    padding-top: 30px;
 }
 
 .details .item:first-child {
@@ -44,9 +65,14 @@
     padding-top: 10px;
 }
 
-.details .item a {
-    margin-top: 15px;
+.add-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.add-item a {
     color: #6558c3;
+    font-weight: bold;
 }
 
 
@@ -63,21 +89,13 @@ input {
 
 .details .text-area {
     height: 257px;
-}
-
-button[type="submit"] {
-    padding: 9px 20px;
-    background-color: #6558c3;
-    border-radius: 4px;
-    font-family: 'Roboto', sans-serif;
-
-    color: white;
+    width: 100%;
+    border: 1px solid #dddddd;
+    outline: none;
+    color: #555555;
     font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    border-color: unset;
-
-    position: relative;
-    bottom: 765px;
-    left: 800px;
+    font-size: 18px;
+    padding-left: 10px;
+    font-family: 'Roboto', sans-serif;
 }
+
