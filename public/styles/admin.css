@@ -22,11 +22,43 @@
     grid-template-columns: 1fr 1fr;
 }
 
+.edit-title {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+}
+
+.button-delete {
+    background-color: red;
+}
+
 .card-recipe h1 {
     font-size: 24px;
     align-self: center;
 }
 
+.button {
+    background-color: #6558c3;
+    border-radius: 4px;
+    font-family: 'Roboto', sans-serif;
+
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    border-color: unset;
+
+    max-width: 143px;
+    justify-self: self-end;
+}
+
+.button a {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 9px;
+    margin-bottom: 9px;
+    color: white;
+}
+ 
 button[type="submit"] {
     padding: 9px 20px;
     background-color: #6558c3;
@@ -99,3 +131,57 @@ input {
     font-family: 'Roboto', sans-serif;
 }
 
+
+
+
+
+
+.cards-admin {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.card-admin {
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
+.card-admin-img {
+    display: flex;
+}
+
+/* .card-admin-text {
+    display: inline-block;
+} */
+
+.card-admin img {
+    border-radius: 15px;
+    height: 84px;
+    width: 100%;
+}
+
+.card-admin h2 {
+    margin-top: 10px;
+    color: #111111;
+    font-size: 18px;
+    font-weight: normal;
+    padding-left: 15px;
+    text-align: left;
+}
+
+.card-admin h3 {
+    color: #777777;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 24px;
+    padding-left: 15px;
+    text-align: left;
+}
+
+.card-admin a {
+    color: #6558c3;
+    padding-left: 15px;
+    font-weight: bold;
+}

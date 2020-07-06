@@ -3,15 +3,25 @@
 
 {% block content %}
 
-        <form class="card-recipe" method="POST" action="/instructors">
-            <h1>Criando receita</h1>
+        <form 
+            class="card-recipe" 
+            action="/admin/recipes/{{recipe.index}}?_method=put"
+            method="POST"
+            >
             
+            <div class="edit-title">
+                <h1>Editar receita</h1>
+                <button class="button-delete" type="submit" form="form-delete">Deletar</button>
+                <button type="submit">Salvar receita</button>
+            </div>
+                        
             <section class="details">
 
                 {% include 'admin/fields.njk' %}
         
             </section>
         </form>
-    
+        <form id="form-delete" action="/admin/recipes/{{recipe.index}}?_method=delete" method="post"></form>
+
     <script src="/javascript/script.js"></script>
 {% endblock %}

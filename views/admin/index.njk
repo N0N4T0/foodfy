@@ -2,17 +2,27 @@
 
 {% block content %}
     <main>
-        <h1>Gerenciar receitas</h1>
+        <div class="title">
+            <h1>Gerenciar receita</h1>
+            <button class="button">
+                <a href="/admin/recipes/create">Nova receita</a>
+            </button>
+        </div>
 
-        <div class="cards">
+        <div class="cards-admin">
             
             {% for recipe in recipes %}
-            <div class="card" name="{{recipe.title}}">
-                <a>
-                    <img src="{{recipe.image}}" alt="{{recipe.title}}">
-                    <h2>{{recipe.title}}</h2>
-                    <h3>por {{recipe.author}}</h3>
-                </a>
+            <div class="card-admin" name="{{recipe.title}}">
+                {# <a> #}
+                    <div class="card-admin-img">
+                        <img src="{{recipe.image}}" alt="{{recipe.title}}">
+                    </div>
+                    <div class="card-admin-text">
+                        <h2>{{recipe.title}}</h2>
+                        <h3>por {{recipe.author}}</h3>
+                        <a href="/admin/recipes/{{recipe.index -1}}">Visualizar</a>
+                    </div>
+                {# </a> #}
             </div>
             {% endfor %}
            

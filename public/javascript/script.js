@@ -19,7 +19,7 @@ for (item of menuItems){
         item.classList.add("active")
     }
 }
-console.log(currentPage)
+// console.log(currentPage)
 
 // 
 const recipeInformations = document.querySelectorAll('.recipe-information')
