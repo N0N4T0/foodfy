@@ -27,7 +27,7 @@ main h1 {
 .card img {
     border-radius: 15px;
     height: 140px;
-    max-width: 300px;
+    width: 100%;
 }
 
 .card h2 {

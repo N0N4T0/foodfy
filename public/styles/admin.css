@@ -54,8 +54,6 @@
 .button a {
     padding-left: 20px;
     padding-right: 20px;
-    margin-top: 9px;
-    margin-bottom: 9px;
     color: white;
 }
  
@@ -131,11 +129,6 @@ input {
     font-family: 'Roboto', sans-serif;
 }
 
-
-
-
-
-
 .cards-admin {
     margin-top: 20px;
     display: grid;
@@ -151,10 +144,6 @@ input {
 .card-admin-img {
     display: flex;
 }
-
-/* .card-admin-text {
-    display: inline-block;
-} */
 
 .card-admin img {
     border-radius: 15px;
