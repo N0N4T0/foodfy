@@ -1,21 +1,6 @@
 {
   "recipes": [
     {
-      "id": 1,
-      "title": "Hot Dog",
-      "author": "Nonato",
-      "image": "https://images.unsplash.com/photo-1582254465498-6bc70419b607?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
-      "ingredients": [
-        "Salsicha",
-        "sal e cheiro-verde a gosto"
-      ],
-      "preparation": [
-        "Em uma panela com o óleo, refogue o alho e a cebola.",
-        "Em uma panela com o óleo, refogue o alho e a cebola."
-      ],
-      "information": "As salsichas picadas rendem mais.\r\n        "
-    },
-    {
       "id": 2,
       "title": "Triplo bacon burger",
       "author": "Jorge Relato",
@@ -165,7 +150,8 @@
       "preparation": [
         "Mistura a margarina com farinha de trigo"
       ],
-      "information": "Cuidado após finalizar, produto internamente demora a esfriar."
+      "information": "                Cuidado após finalizar, produto internamente demora a esfriar.\r\n        ",
+      "birth": null
     }
   ]
 }

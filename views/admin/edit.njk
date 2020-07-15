@@ -20,8 +20,13 @@
                 {% include 'admin/fields.njk' %}
         
             </section>
+
+            <input type="hidden" name="id" value={{recipe.id}}>
         </form>
-        <form id="form-delete" action="/admin/recipes/{{recipe.index}}?_method=delete" method="post"></form>
+        
+        <form id="form-delete" action="/admin/recipes/{{recipe.index}}?_method=delete" method="post">
+            <input type="hidden" name="id" value={{recipe.id}}>
+        </form>
 
     <script src="/javascript/script.js"></script>
 {% endblock %}

@@ -43,7 +43,7 @@
     grid-template-columns: 3fr 1fr 1fr;
 }
 
-.button-delete {
+.card-recipe .edit-title .button-delete[type="submit"] {
     background-color: red;
 }
 
@@ -106,11 +106,15 @@ input {
     width: 100%;
     border: 1px solid #dddddd;
     outline: none;
-    color: #555555;
-    font-weight: bold;
+    color: #111111;
+    font-weight: normal;
     font-size: 18px;
     height: 49px;
     padding-left: 10px;
+}
+
+.ingredients input {
+    margin-bottom: 10px;
 }
 
 .details .text-area {
@@ -118,9 +122,10 @@ input {
     width: 100%;
     border: 1px solid #dddddd;
     outline: none;
-    color: #555555;
-    font-weight: bold;
-    font-size: 18px;
+    color: #111111;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
     padding-left: 10px;
     font-family: 'Roboto', sans-serif;
 }
@@ -173,7 +178,7 @@ input {
 
 /* EDIT */
 .details {
-    margin: 36px auto 0;
+    margin: 0 auto 0;
     max-width: 940px;
 }
 
