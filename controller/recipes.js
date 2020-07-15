@@ -29,6 +29,11 @@ module.exports = {
     },
     
     show(req, res) {
+
+        
+
+
+
         const recipeIndex = req.params.index
         const recipe = {
             ...data.recipes[recipeIndex],

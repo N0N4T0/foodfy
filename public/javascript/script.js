@@ -9,6 +9,19 @@ for (let i = 0; i < cards.length; i++) {
     })
 }
 
+const adminCards = document.querySelectorAll('.card-admin')
+
+for (let i = 0; i < adminCards.length; i++) {
+    adminCards[i].addEventListener('click', function () {
+        let admin = 0
+        admin += i
+        window.location.href = `/admin/recipes/${admin}`
+    })
+}
+console.log(adminCards)
+
+
+
 
 //Selecionar active por página
 const currentPage = location.pathname
