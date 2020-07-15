@@ -20,26 +20,35 @@ module.exports = {
                 return res.send('Por favor, preencha todos os campos.')
         }
     
-        data.recipes.push({...req.body})
+        let { title, author, image, ingredients, preparation, information } = req.body
+        const id = Number(data.recipes.length + 1)
+
+        data.recipes.push({
+            id,
+            ...req.body
+        })
     
         fs.writeFile('data.json', JSON.stringify(data, null, 2), function (err) {
             if (err) return res.send('Write file error!')
-            return res.redirect('/admin/recipes')
+            // return res.redirect('/admin/recipes')
+            return res.redirect(`/admin/recipes/${id}`)
         })
     },
     
-    show(req, res) {
+    show(req, res) {   
+        const { id } = req.params
 
-        
+        const foundRecipe = data.recipes.find(function(recipe) {
+            return recipe.id == id
+        })
+    
+        if(!foundRecipe) return res.send('Receita not found!');
+    
 
-
-
-        const recipeIndex = req.params.index
         const recipe = {
-            ...data.recipes[recipeIndex],
-            index: recipeIndex
+            ...foundRecipe,
         }
-        return res.render('admin/show', { recipe: recipe[recipeIndex] })
+        return res.render('admin/show', { recipe })
     },
     
     

@@ -4,9 +4,10 @@
     <main>
         <div class="title">
             <h1>Gerenciar receita</h1>
-            <button class="button">
-                <a href="/admin/recipes/create">Nova receita</a>
-            </button>
+            <a class="button"
+               href="/admin/recipes/create">
+               Nova receita
+            </a>
         </div>
 
         <div class="cards-admin">
@@ -19,7 +20,7 @@
                 <div class="card-admin-text">
                     <h2>{{recipe.title}}</h2>
                     <h3>por {{recipe.author}}</h3>
-                    <a href="/admin/recipes/{{recipe.index -1}}">Visualizar</a>
+                    <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
                 </div>
             </div>
             {% endfor %}
