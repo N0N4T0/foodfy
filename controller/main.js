@@ -1,18 +1,20 @@
 const { recipes } = require('../data.json')
 
-exports.index = function (req, res) {
-    return res.render('main/index', { recipes })
-}
-
-exports.about = function (req, res) {
-    return res.render('main/about')
-}
-
-exports.recipes = function (req, res) {
-    return res.render('main/recipes', { recipes })
-}
-
-exports.recipe = function (req, res) {
-    const recipesIndex = req.params.index
-    return res.render('main/recipe', { recipe: recipes[recipesIndex] })
+module.exports = {
+    index(req, res) {
+        return res.render('main/index', { recipes })
+    },
+    
+    about(req, res) {
+        return res.render('main/about')
+    },
+    
+    recipes(req, res) {
+        return res.render('main/recipes', { recipes })
+    },
+    
+    recipe(req, res) {
+        const recipesIndex = req.params.index
+        return res.render('main/recipe', { recipe: recipes[recipesIndex] })
+    },
 }
