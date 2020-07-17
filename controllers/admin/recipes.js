@@ -1,15 +1,15 @@
 const fs = require('fs')
-const data = require("../data.json")
+const data = require("../../data.json")
 
 //ADMIN
 
 module.exports = {
     index(req, res) {
-        return res.render('admin/index', { recipes: data.recipes })
+        return res.render('admin/recipes/index', { recipes: data.recipes })
     },
     
     create(req, res){
-        return res.render('admin/create')
+        return res.render('admin/recipes/create')
     },
     
     post(req, res) {
@@ -47,7 +47,7 @@ module.exports = {
         const recipe = {
             ...foundRecipe,
         }
-        return res.render('admin/show', { recipe })
+        return res.render('admin/recipes/show', { recipe })
     },
     
     edit(req, res) {
@@ -63,7 +63,7 @@ module.exports = {
             ...foundRecipe,
         }
 
-        return res.render('admin/edit', { recipe })
+        return res.render('admin/recipes/edit', { recipe })
     },
     
     put(req, res) {

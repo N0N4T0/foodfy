@@ -17,12 +17,22 @@
 
     <body>
         <div class="menu">
-            <div id="menu-img">
-                <a href="/admin/recipes">
+            <div class="menu_width">
+                <a>
                     <img src="/assets/logo.png" alt="">
-                </a>              
-            </div>   
-                       
+                </a>           
+           
+                <a href="/admin/recipes">
+                    <h2>Receitas</h2>
+                </a>
+
+                <a href="/admin/chefs">
+                    <h2>Chefs</h2>
+                </a>
+               
+            </div>
+
+        </div>            
         {% block content %} {% endblock %}
 
         <footer>

@@ -1,4 +1,4 @@
-const { recipes } = require('../data.json')
+const { recipes } = require('../../data.json')
 
 module.exports = {
     index(req, res) {
@@ -16,5 +16,5 @@ module.exports = {
     recipe(req, res) {
         const recipesIndex = req.params.index
         return res.render('main/recipe', { recipe: recipes[recipesIndex] })
-    },
+    }
 }
