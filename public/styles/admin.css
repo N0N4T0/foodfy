@@ -223,3 +223,66 @@ input {
     color: #444444;
     line-height: 28px;
 }
+
+/* CHEFS */
+.chefPosition {
+    display: grid;
+    justify-content: center;
+    margin-top: 51px;
+    text-align: center;
+}
+
+.chefPosition img,
+.chefsPosition img{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 30px;
+}
+
+.chefPosition h1 {
+    font-size: 36px;
+    margin-bottom: 4px;
+}
+
+.chefPosition h3 {
+    font-size: 20px;
+    color: #777777;
+    font-weight: normal;
+}
+
+.chefRecipe {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.chefsPosition {
+    display: grid;
+    justify-content: start;
+    grid-template-columns: 64px 200px;
+    gap: 20px;
+}
+
+.chefsPosition img {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 0px;
+}
+
+.chefsText {
+    align-self: center;
+}
+
+.chefsText a{
+    color: #6558c3;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.chefsText h1{
+    color: #111111;
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}

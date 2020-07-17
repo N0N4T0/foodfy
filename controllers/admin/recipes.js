@@ -82,8 +82,7 @@ module.exports = {
         const recipe = {
             ...foundRecipe,
             ...req.body,
-            id: Number(id),
-            birth: Date.parse(req.body.birth),
+            id: Number(id)
         }
 
         data.recipes[index] = recipe
