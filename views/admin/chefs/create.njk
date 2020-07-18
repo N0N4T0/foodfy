@@ -6,17 +6,17 @@
 
 {% block content %}
     <main>
-        <form action="/admin/chefs" method="POST"></form>
-         <div class="title">
-            <h1>Criando chef</h1>
-            <button type="submit">Salvar chef</button>
-        </div>
+        <form action="/admin/chefs" method="POST">
+            <div class="title">
+                <h1>Criando chef</h1>
+                <button type="submit">Salvar chef</button>
+            </div>
+        
+            <section class="details">
 
-        <section class="details">
+                {% include 'admin/chefs/fields.njk' %}
 
-            {% include 'admin/chefs/fields.njk' %}
-
-        </section>
-
+            </section>
+        </form>
     </main>
 {% endblock %}

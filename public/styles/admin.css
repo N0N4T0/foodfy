@@ -65,7 +65,8 @@
     grid-template-columns: 3fr 1fr 1fr;
 }
 
-.card-recipe .edit-title .button-delete[type="submit"] {
+.card-recipe .edit-title .button-delete[type="submit"],
+.card-chef .edit-title .button-delete[type="submit"] {
     background-color: red;
 }
 
@@ -172,6 +173,7 @@ input {
     border-radius: 15px;
     height: 84px;
     width: 100%;
+    object-fit: cover;
 }
 
 .card-admin h2 {
@@ -225,6 +227,13 @@ input {
 }
 
 /* CHEFS */
+.chef-admin-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding-top: 20px;
+    gap: 20px;
+}
+
 .chefPosition {
     display: grid;
     justify-content: center;
@@ -260,7 +269,7 @@ input {
 .chefsPosition {
     display: grid;
     justify-content: start;
-    grid-template-columns: 64px 200px;
+    grid-template-columns: 64px 135px;
     gap: 20px;
 }
 
@@ -271,7 +280,9 @@ input {
 }
 
 .chefsText {
-    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-self: auto;
 }
 
 .chefsText a{
@@ -285,4 +296,5 @@ input {
     font-size: 18px;
     font-weight: normal;
     margin-bottom: 10px;
+    flex: 1;
 }

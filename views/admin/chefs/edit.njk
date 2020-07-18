@@ -2,7 +2,7 @@
 
 
 {% block content %}
-
+    <main>
         <form 
             class="card-chef" 
             action="/admin/chefs/{{chef.index}}?_method=put"
@@ -27,8 +27,10 @@
         <form id="form-delete" action="/admin/chefs/{{chef.index}}?_method=delete" method="post">
             <input type="hidden" name="id" value={{chef.id}}>
         </form>
+    </main>
 
-        {# {% include "admin/chefs/confirm.njk" %} #}
+    {% include "admin/confirm.njk" %}
+
 
     <script src="/javascript/script.js"></script>
 {% endblock %}

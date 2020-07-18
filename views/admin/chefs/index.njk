@@ -14,12 +14,20 @@
             </a>
         </div>
 
-        <div class="chefsPosition">
-            <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=625&q=80" alt="">
-            <div class="chefsText">
-                <h1>Ricardo Golvea</h1>
-                <a href="">Visualizar</a>
+        <div class="chef-admin-cards">
+
+            {% for chef in chefs %}
+            <div class="chefsPosition">
+                <div>
+                    <img src="{{chef.image}}" alt="Imagem do chef">
+                </div>
+                <div class="chefsText">
+                    <h1>{{chef.name}}</h1>
+                    <a href="/admin/chefs/{{chef.id}}">Visualizar</a>
+                </div>
             </div>
+            {% endfor %}
+
         </div>
 
     </main>

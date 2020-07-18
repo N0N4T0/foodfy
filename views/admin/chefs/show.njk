@@ -7,16 +7,16 @@
 {% block content %}
     <main>
         <div class="title">
-            <h1>Chef: Ricardo Golvea</h1>
+            <h1>Chef: {{chef.name}}</h1>
             <a class="button"
-               href="">
+               href="/admin/chefs/{{chef.id}}/edit">
                Editar chef
             </a>
         </div>
         
         <div class="chefPosition">
-            <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=625&q=80" alt="">
-            <h1>Ricardo Golvea</h1>
+            <img src={{chef.image}} alt="Chef image">
+            <h1>{{chef.name}}</h1>
             <h3>4 receitas</h3>
         </div>
 
@@ -24,7 +24,7 @@
             <h1>Receitas</h1>
         </div>
 
-        <div class="cards-admin">
+        {# <div class="cards-admin">
             
             {% for recipe in recipes %}
             <div class="card-admin" name="{{recipe.title}}">
@@ -39,6 +39,6 @@
             </div>
             {% endfor %}
            
-        </div>
+        </div> #}
     </main>
 {% endblock content %}
