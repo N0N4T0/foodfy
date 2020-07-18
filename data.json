@@ -1,7 +1,7 @@
 {
   "recipes": [
     {
-      "id": 3,
+      "id": 1,
       "title": "Pizza 4 estações",
       "author": "Fabiana Melo",
       "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/pizza.png",
@@ -29,7 +29,7 @@
       "information": "Pizza de liquidificador é uma receita deliciosa e supersimples de preparar. Feita toda no liquidificador, ela é bem prática para o dia a dia. Aqui no TudoGostoso você também encontra diversas delícias práticas feitas no liquidificador: massa de panqueca, torta de frango de liquidificador, pão de queijo de liquidificador, bolo de banana, bolo de chocolate e muito mais!"
     },
     {
-      "id": 4,
+      "id": 2,
       "title": "Asinhas de frango ao barbecue",
       "author": "Vania Steroski",
       "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/asinha.png",
@@ -47,7 +47,7 @@
       "information": ""
     },
     {
-      "id": 5,
+      "id": 3,
       "title": "Lasanha mac n' cheese",
       "author": "Juliano Vieira",
       "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/lasanha.png",
@@ -68,7 +68,7 @@
       "information": "Recheie a lasanha com o que preferir."
     },
     {
-      "id": 6,
+      "id": 4,
       "title": "Espaguete ao alho",
       "author": "Júlia Kinoto",
       "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/macarrao.png",
@@ -93,7 +93,7 @@
       "information": "Não lave o macarrão nem passe óleo ou gordura nele depois de escorrê-lo. Coloque direto na frigideira."
     },
     {
-      "id": 7,
+      "id": 5,
       "title": "Docinhos pão-do-céu",
       "author": "Ricardo Golvea",
       "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/launchbase/receitas/doce.png",
@@ -116,7 +116,7 @@
       "information": ""
     },
     {
-      "id": 8,
+      "id": 6,
       "title": "Donuts",
       "author": "Ding Bain",
       "image": "https://images.unsplash.com/photo-1458938354258-3e66eb36eb7b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1061&q=80",
@@ -127,6 +127,22 @@
         "Mistura a margarina com farinha de trigo"
       ],
       "information": "                Cuidado após finalizar, produto internamente demora a esfriar.\r\n        "
+    },
+    {
+      "id": 7,
+      "title": "Hot Dog",
+      "author": "Ding Bain",
+      "image": "https://images.unsplash.com/photo-1582254465498-6bc70419b607?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
+      "ingredients": [
+        "Salsicha",
+        "sal e cheiro-verde a gosto"
+      ],
+      "preparation": [
+        "Em uma panela com o óleo, refogue o alho e a cebola.",
+        "Fritar"
+      ],
+      "information": "                                                \r\n        \r\n        \r\n        "
     }
-  ]
+  ],
+  "chefs": []
 }

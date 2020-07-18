@@ -15,7 +15,7 @@ module.exports = {
     post(req, res) {
         const keys = Object.keys(req.body)
     
-        for (let key of keys) {
+        for (key of keys) {
             if (req.body[key] == '')
                 return res.send('Por favor, preencha todos os campos.')
         }
@@ -27,7 +27,7 @@ module.exports = {
             id,
             ...req.body
         })
-    
+
         fs.writeFile('data.json', JSON.stringify(data, null, 2), function (err) {
             if (err) return res.send('Write file error!')
             return res.redirect(`/admin/recipes/${id}`)
