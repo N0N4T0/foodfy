@@ -1,11 +1,11 @@
-const fs = require('fs')
-const data = require("../../../../data.json")
-
-//ADMIN
+const Recipes = require("../../models/admin/Recipes")
 
 module.exports = {
     index(req, res) {
-        return res.render('admin/recipes/index', { recipes: data.recipes })
+        Recipes.all(function(recipes){
+            return res.render('admin/recipes/index', { recipes })
+
+        })
     },
     
     create(req, res){
@@ -20,93 +20,49 @@ module.exports = {
                 return res.send('Por favor, preencha todos os campos.')
         }
     
-        let { title, author, image, ingredients, preparation, information } = req.body
-        const id = Number(data.recipes.length + 1)
-
-        data.recipes.push({
-            id,
-            ...req.body
+        Recipes.create(req.body, function(recipe){
+            return res.redirect(`/admin/recipes/${recipe.id}`)
         })
-
-        fs.writeFile('data.json', JSON.stringify(data, null, 2), function (err) {
-            if (err) return res.send('Write file error!')
-            return res.redirect(`/admin/recipes/${id}`)
-        })
+        
     },
     
     show(req, res) {   
-        const { id } = req.params
+        Recipes.find(req.params.id, function(recipe){
+            if(!recipe) return res.send('Receita not found!')
 
-        const foundRecipe = data.recipes.find(function(recipe) {
-            return recipe.id == id
+            return res.render('admin/recipes/show', { recipe })
         })
-    
-        if(!foundRecipe) return res.send('Receita not found!');
-    
-
-        const recipe = {
-            ...foundRecipe,
-        }
-        return res.render('admin/recipes/show', { recipe })
     },
     
     edit(req, res) {
-        const { id } = req.params
+        Recipes.find(req.params.id, function(recipe){
+            if(!recipe) return res.send('Receita not found!')
 
-        const foundRecipe = data.recipes.find(function(recipe) {
-            return recipe.id == id
+            return res.render('admin/recipes/edit', { recipe })
         })
-    
-        if(!foundRecipe) return res.send('Receita not found!');
-
-        const recipe = {
-            ...foundRecipe,
-        }
-
-        return res.render('admin/recipes/edit', { recipe })
     },
     
     put(req, res) {
-        const { id } = req.body;
-        let index
-
-        const foundRecipe = data.recipes.find(function(recipe, foundIndex){
-            if(recipe.id  == id){
-                index = foundIndex            
-                return true
-            }     
-        })
-
-        if(!foundRecipe) return res.send("Recipe not found")
-
-        const recipe = {
-            ...foundRecipe,
-            ...req.body,
-            id: Number(id)
-        }
-
-        data.recipes[index] = recipe
+        const keys = Object.keys(req.body)
     
-        fs.writeFile('data.json', JSON.stringify(data, null, 2), function (err) {
-            if (err) return res.send('Write file error!')
+        for (key of keys) {
+            if (req.body[key] == '')
+                return res.send('Por favor, preencha todos os campos.')
+        }
+    
+        Recipes.update(req.body, function(recipe){
+            return res.redirect(`/admin/recipes/${recipe.id}`)
 
-            return res.redirect(`/admin/recipes/${id}`)
         })
+
+        
     },
     
     delete(req, res) {
-        const { id } = req.body
-
-        const filteredRecipes = data.recipes.filter(function(recipe){
-            return recipe.id != id
-        })
-    
-        data.recipes = filteredRecipes
-    
-        fs.writeFile('data.json', JSON.stringify(data, null, 2), function (err){
-            if (err) return res.send('Write file error!')
-            
+        Recipes.delete(req.body.id, function(){
             return res.redirect('/admin/recipes')
+
         })
+        
     }
 }
