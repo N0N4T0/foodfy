@@ -30,7 +30,11 @@ module.exports = {
         ChefsAdm.find(req.params.id, function(chef){
             if(!chef) return res.send("Chef não encontrado!")
 
-            return res.render('admin/chefs/show', { chef })
+            ChefsAdm.chefRecipes(req.params.id, function(recipes){
+
+                return res.render('admin/chefs/show', { chef, recipes })
+            })
+
         })
 
     },

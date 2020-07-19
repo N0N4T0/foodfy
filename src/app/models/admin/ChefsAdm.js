@@ -80,6 +80,16 @@ module.exports = {
         })
     },
 
+    chefRecipes(id, callback){
+        db.query(`
+        SELECT * FROM recipes
+        WHERE chef_id = $1
+        `, [id], function(err, results){
+            if(err) throw `Database Error ${err}`
+            
+            callback(results.rows)
+        })
+    }
 
 
 }

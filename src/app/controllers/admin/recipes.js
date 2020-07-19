@@ -59,9 +59,7 @@ module.exports = {
         Recipes.update(req.body, function(recipe){
             return res.redirect(`/admin/recipes/${recipe.id}`)
 
-        })
-
-        
+        })      
     },
     
     delete(req, res) {
