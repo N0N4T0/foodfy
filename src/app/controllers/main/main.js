@@ -1,4 +1,4 @@
-const { recipes } = require('../../data.json')
+const { recipes } = require('../../../../data.json')
 
 module.exports = {
     index(req, res) {

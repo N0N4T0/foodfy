@@ -1,11 +1,11 @@
 const express = require('express')
 const routes = express.Router()
 
-const main = require("./controllers/main/main")
-const chefs = require("./controllers/main/chefs")
+const main = require("./app/controllers/main/main")
+const chefs = require("./app/controllers/main/chefs")
 
-const recipes = require("./controllers/admin/recipes")
-const chefsAdmn = require("./controllers/admin/chefsAdm")
+const recipes = require("./app/controllers/admin/recipes")
+const chefsAdmn = require("./app/controllers/admin/chefsAdm")
 
 
 //rotas

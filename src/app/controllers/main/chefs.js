@@ -1,4 +1,4 @@
-const fs = require('fs')
+const { chefs } = require('../../../../data.json')
 
 module.exports = {
     index(req, res) {

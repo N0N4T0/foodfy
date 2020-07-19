@@ -273,6 +273,10 @@ input {
     gap: 20px;
 }
 
+.chefPosition img {
+    justify-self: center;
+}
+
 .chefsPosition img {
     width: 64px;
     height: 64px;
