@@ -125,7 +125,7 @@ button[type="submit"],
 }
 
 
-input {
+input, select {
     width: 100%;
     border: 1px solid #dddddd;
     outline: none;

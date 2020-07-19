@@ -15,30 +15,31 @@
         </div>
         
         <div class="chefPosition">
-            <img src={{chef.avatar_url}} alt="Chef image">
+            <img src={{chef.avatar_url}} alt="{{chef.name}}">
             <h1>{{chef.name}}</h1>
-            <h3>4 receitas</h3>
+            <h3>{{chef.total_recipes}} receitas</h3>
         </div>
 
         <div class="chefRecipe">
             <h1>Receitas</h1>
+
+            <div class="cards-admin">
+                        
+                {% for recipe in recipes %}
+                <div class="card-admin" name="{{recipe.title}}">
+                    <div class="card-admin-img">
+                        <img src="{{recipe.image}}" alt="{{recipe.title}}">
+                    </div>
+                    <div class="card-admin-text">
+                        <h2>{{recipe.title}}</h2>
+                        <h3>por {{recipe.chef_name}}</h3>
+                        <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
+                    </div>
+                </div>
+                {% endfor %}
+            
+            </div>
         </div>
 
-        {# <div class="cards-admin">
-            
-            {% for recipe in recipes %}
-            <div class="card-admin" name="{{recipe.title}}">
-                <div class="card-admin-img">
-                    <img src="{{recipe.image}}" alt="{{recipe.title}}">
-                </div>
-                <div class="card-admin-text">
-                    <h2>{{recipe.title}}</h2>
-                    <h3>por {{recipe.author}}</h3>
-                    <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
-                </div>
-            </div>
-            {% endfor %}
-           
-        </div> #}
     </main>
 {% endblock content %}
