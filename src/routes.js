@@ -12,7 +12,7 @@ const chefsAdmn = require("./app/controllers/admin/chefsAdm")
 routes.get('/', main.index)
 routes.get('/about', main.about)
 routes.get('/recipes', main.recipes)
-routes.get('/recipes/:index', main.recipe)
+routes.get('/recipe/:id', main.recipe)
 
 routes.get('/chefs', chefs.index)
 

@@ -26,15 +26,16 @@
         <div class="cards">
             
             {% for recipe in recipes %}
-            <div class="card" name="{{recipe.title}}">
-                <a>
+            <div class="card" id="{{recipe.id}}" name="{{recipe.title}}">
+                <a href="/main/recipes/{{recipe.id}}">
                     <img src="{{recipe.image}}" alt="{{recipe.title}}">
                     <h2>{{recipe.title}}</h2>
-                    <h3>por {{recipe.author}}</h3>
+                    <h3>por {{recipe.chef_name}}</h3>
                 </a>
             </div>
+            {# <input type="hidden" name="id" value={{recipe.id}}> #}
             {% endfor %}
-           
+
         </div>
     </main>
     
