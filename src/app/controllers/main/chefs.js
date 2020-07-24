@@ -1,8 +1,11 @@
-const { chefs } = require('../../../../data.json')
+const Chefs = require("../../models/main/Chefs")
 
 module.exports = {
     index(req, res) {
-        return res.render('main/chefs')
+        Chefs.all(function(chefs){
+            return res.render('main/chefs', { chefs })
+
+        })
     }
 
 }

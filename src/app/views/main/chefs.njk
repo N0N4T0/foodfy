@@ -4,3 +4,24 @@
 {% block head %}
     <title>Chefs - Foodfy</title>
 {% endblock %}
+
+
+{% block content %}
+<main>
+    <div class="chef-cards">
+
+        {% for chef in chefs %}
+        <div class="chefsPosition">
+            <div>
+                <img src="{{chef.avatar_url}}" alt="Imagem do chef">
+            </div>
+            <div class="chefsText">
+                <h1>{{chef.name}}</h1>
+                <h3>{{chef.total_recipes}} receitas</h3>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</main>
+{% endblock content %}
