@@ -58,6 +58,15 @@ header nav h2 {
    font-weight: normal;
 }
 
+#search {
+    margin-left: 175px;
+}
+
+#search input[type="text"]{
+    width: 200px;
+    height: 37px;
+}
+
 .information.hidden {
     display: none;
 }
