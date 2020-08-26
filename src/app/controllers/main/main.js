@@ -23,5 +23,15 @@ module.exports = {
 
             return res.render('main/recipe', { recipe })
         })
+    },
+
+    searchRecipe(req, res) {
+        const { filter } = req.query
+
+        Main.findByRecipes(filter, function(recipes){
+
+            return res.render("main/search", { recipes, filter })
+        })    
+        
     }
 }

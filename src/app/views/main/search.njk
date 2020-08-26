@@ -1,0 +1,34 @@
+{% extends "layouts/main.njk" %}
+
+
+{% block head %}
+    <title>Receitas - Foodfy</title>
+
+    <link rel="stylesheet" href="/styles/receitas.css"> 
+{% endblock %}
+
+
+{% block content %}
+    <section class="search-recipes-container">
+        <h1>Buscando por "{{filter}}"</h1>
+
+        <div class="cards">
+                
+            {% for recipe in recipes %}
+            <div class="card" name="{{recipe.title}}">
+                <a href="/recipe/{{recipe.id}}">
+                    <img src="{{recipe.image}}" alt="{{recipe.title}}">
+                    <h2>{{recipe.title}}</h2>
+                    <h3>por {{recipe.chef_name}}</h3>
+                </a>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </section>
+    
+    
+         
+    <script src="/javascript/script.js"></script>
+
+{% endblock %}

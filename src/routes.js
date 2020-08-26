@@ -9,13 +9,18 @@ const chefsAdmn = require("./app/controllers/admin/chefsAdm")
 
 
 //rotas
+
+//site
 routes.get('/', main.index)
 routes.get('/about', main.about)
 routes.get('/recipes', main.recipes)
 routes.get('/recipe/:id', main.recipe)
+routes.get('/search', main.searchRecipe)
 
 routes.get('/chefs', chefs.index)
 
+
+//admin
 routes.get("/admin/recipes", recipes.index) // Mostrar a lista de receitas
 routes.get("/admin/recipes/create", recipes.create) // Mostrar formulário de nova receita
 routes.get("/admin/recipes/:id", recipes.show) // Exibir detalhes de uma receita

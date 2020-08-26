@@ -7,8 +7,13 @@
 
 
 {% block header %}
-    <form action="/recipes" method="get" id="search">
-        <input type="text" name="filter" value="{{ filter }}" placeholder="Buscar uma receita">
+    <form action="/search" method="get" id="search">
+        <input 
+            type="text"
+            name="filter"
+            value="{{ filter }}"
+            placeholder="Buscar uma receita"
+        >
         <button type="submit" class="button">
             Buscar
         </button>
