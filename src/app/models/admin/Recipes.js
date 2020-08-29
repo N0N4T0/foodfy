@@ -3,20 +3,16 @@ const { date } = require("../../../lib/utils")
 
 
 module.exports = {
-    all(callback){
-        db.query(`
+    all(){
+        return db.query(`
         SELECT recipes.*, chefs.name AS chef_name 
         FROM recipes
         LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
         ORDER BY recipes.title ASC
-        `, function(err, results){
-            if(err) throw `Database Error ${err}`
-
-            callback(results.rows)
-        })
+        `)
     },
 
-    create(data, callback) {
+    create(data) {
         const query = `
         INSERT INTO recipes(
            image,
@@ -40,26 +36,18 @@ module.exports = {
             data.chef
         ]
 
-        db.query(query, values, function(err, results){
-            if(err) throw `Database Error ${err}`
-
-            callback(results.rows[0])
-        })
+        return db.query(query, values)
     },
 
-    find(id, callback){
-        db.query(`
+    find(id){
+        return db.query(`
             SELECT recipes.*, chefs.name AS chef_name
             FROM recipes
             LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-            WHERE recipes.id = $1`, [id], function(err, results){
-                if(err) throw `Database Error ${err}`
-            
-                callback(results.rows[0])
-            })
+            WHERE recipes.id = $1`, [id])
     },
 
-    update(data, callback){
+    update(data){
         const query = `
         UPDATE recipes SET
             image = ($1),
@@ -81,29 +69,18 @@ module.exports = {
             data.id,
         ]
 
-        db.query(query, values, function(err, results){
-            if(err) throw `Database Error ${err}`
-
-            callback()
-        })  
+        return db.query(query, values)  
     },
 
-    delete(id, callback){
-        db.query(`DELETE FROM recipes WHERE id = $1`, [id], function(err, results){
-            if(err) throw `Database Error ${err}`
-
-            return callback()
-        })
+    delete(id){
+        return db.query(`DELETE FROM recipes WHERE id = $1`, [id])
     },
 
-    chefsSelectOptions(callback){
-        db.query(`
+    chefsSelectOptions(){
+        return db.query(`
         SELECT name, id FROM chefs
-        ORDER BY chefs.name`, function(err, results){
-            if(err) throw `Database Error ${err}`
-
-            return callback(results.rows) 
-        })
+        ORDER BY chefs.name
+        `)
     }
 
 

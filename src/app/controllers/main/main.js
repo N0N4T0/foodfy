@@ -1,37 +1,43 @@
 const Main = require("../../models/main/Main")
 
 module.exports = {
-    index(req, res) {
-        Main.all(function(recipes){
-            return res.render('main/index', { recipes })
-        })
+    async index(req, res) {
+        const results = await Main.all()
+        
+        const recipes = results.rows
+
+        return res.render('main/index', { recipes })
     },
     
     about(req, res) {
         return res.render('main/about')
     },
     
-    recipes(req, res) {
-        Main.all(function(recipes){
-            return res.render('main/recipes', { recipes })
-        })
+    async recipes(req, res) {
+        const results = await Main.all()
+        
+        const recipes = results.rows
+
+        return res.render('main/recipes', { recipes })
     },
     
-    recipe(req, res) {
-        Main.find(req.params.id, function(recipe){
-            if(!recipe) return res.send('Receita not found!')
+    async recipe(req, res) {
+        const results = await Main.find(req.params.id)
+        const recipe = results.rows[0]
 
-            return res.render('main/recipe', { recipe })
-        })
+        if(!recipe) return res.send('Recipe not found!')
+
+        return res.render('main/recipe', { recipe })
     },
 
-    searchRecipe(req, res) {
+    async searchRecipe(req, res) {
         const { filter } = req.query
 
-        Main.findByRecipes(filter, function(recipes){
+        const results = await Main.findByRecipes(filter)
+        const recipes = results.rows
 
-            return res.render("main/search", { recipes, filter })
-        })    
+        if(!filter) return res.send('Por favor, digite algo para pesquisar!')
         
+        return res.render("main/search", { recipes, filter })          
     }
 }

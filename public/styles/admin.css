@@ -136,7 +136,8 @@ input, select {
     padding-left: 10px;
 }
 
-.ingredients input {
+.ingredients input,
+.steps input {
     margin-bottom: 10px;
 }
 

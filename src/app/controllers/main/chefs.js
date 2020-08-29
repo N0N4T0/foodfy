@@ -1,11 +1,12 @@
 const Chefs = require("../../models/main/Chefs")
 
 module.exports = {
-    index(req, res) {
-        Chefs.all(function(chefs){
-            return res.render('main/chefs', { chefs })
+    async index(req, res) {
+        const results = await Chefs.all()
 
-        })
+        const chefs = results.rows
+
+        return res.render('main/chefs', { chefs })
     }
 
 }

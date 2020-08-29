@@ -1,20 +1,22 @@
 const Recipes = require("../../models/admin/Recipes")
 
 module.exports = {
-    index(req, res) {
-        Recipes.all(function(recipes){
-            return res.render('admin/recipes/index', { recipes })
+    async index(req, res) {
+        const results = await Recipes.all()
+        const recipes = results.rows
 
-        })
+        return res.render('admin/recipes/index', { recipes })
     },
     
-    create(req, res){
-        Recipes.chefsSelectOptions(function(options){
-            return res.render('admin/recipes/create', { chefOptions: options })
-        })
+    async create(req, res){
+        const results = await Recipes.chefsSelectOptions()
+
+        const options = results.rows
+
+        return res.render('admin/recipes/create', { chefOptions: options })
     },
     
-    post(req, res) {
+    async post(req, res) {
         const keys = Object.keys(req.body)
     
         for (key of keys) {
@@ -22,33 +24,34 @@ module.exports = {
                 return res.send('Por favor, preencha todos os campos.')
         }
     
-        Recipes.create(req.body, function(recipe){
-            return res.redirect(`/admin/recipes/${recipe.id}`)
-        })
-        
+        const results = await Recipes.create(req.body)
+        const recipe = results.rows[0]
+
+        return res.redirect(`/admin/recipes/${recipe.id}`)
     },
     
-    show(req, res) {   
-        Recipes.find(req.params.id, function(recipe){
-            if(!recipe) return res.send('Receita not found!')
+    async show(req, res) {  
+        const results = await Recipes.find(req.params.id)
+        const recipe = results.rows[0]
 
-            return res.render('admin/recipes/show', { recipe })
-        })
+        if(!recipe) return res.send('Receita not found!')
+
+        return res.render('admin/recipes/show', { recipe })
     },
     
-    edit(req, res) {
-        Recipes.find(req.params.id, function(recipe){
-            if(!recipe) return res.send('Receita not found!')
+    async edit(req, res) {
+        let results = await Recipes.find(req.params.id)
+        const recipe = results.rows[0]
 
-            Recipes.chefsSelectOptions(function(options){
-                return res.render('admin/recipes/edit', { recipe, chefOptions: options })
+        if(!recipe) return res.send('Receita not found!')
 
-            })
+        results = await Recipes.chefsSelectOptions()
+        const options = results.rows
 
-        })
+        return res.render('admin/recipes/edit', { recipe, chefOptions: options })
     },
     
-    put(req, res) {
+    async put(req, res) {
         const keys = Object.keys(req.body)
     
         for (key of keys) {
@@ -56,17 +59,21 @@ module.exports = {
                 return res.send('Por favor, preencha todos os campos.')
         }
     
-        Recipes.update(req.body, function(recipe){
-            return res.redirect(`/admin/recipes/${recipe.id}`)
+        await Recipes.update(req.body)
 
-        })      
+        return res.redirect(`/admin/recipes/${req.body.id}`)
     },
     
-    delete(req, res) {
-        Recipes.delete(req.body.id, function(){
-            return res.redirect('/admin/recipes')
+    async delete(req, res) {
+        await Recipes.delete(req.body.id)
 
-        })
+        return res.redirect('/admin/recipes')
+
+
+        // Recipes.delete(req.body.id, function(){
+        //     return res.redirect('/admin/recipes')
+
+        // })
         
     }
 }
