@@ -300,6 +300,13 @@ input, select {
     color: #111111;
     font-size: 18px;
     font-weight: normal;
-    margin-bottom: 10px;
-    flex: 1;
+    margin-bottom: 8px;
+    /* flex: 1; */
+}
+
+.chefsText h3 {
+    color: #666666;
+    font-size: 14px;
+    font-weight: normal;
+    margin-bottom: 4px;
 }

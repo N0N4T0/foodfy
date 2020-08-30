@@ -1,53 +1,53 @@
 const ChefsAdm = require("../../models/admin/ChefsAdm")
 
 module.exports = {
-    index(req, res) {
-        ChefsAdm.all(function(chefs){
-            return res.render('admin/chefs/index', { chefs })
-
-        })
+    async index(req, res) {
+        const results = await ChefsAdm.all()
+        const chefs = results.rows
+        
+        return res.render('admin/chefs/index', { chefs })
     },
 
     create(req, res) {
         return res.render('admin/chefs/create')
     }, 
 
-    post(req, res) {
+    async post(req, res) {
         const keys = Object.keys(req.body)
     
         for (key of keys) {
             if (req.body[key] == '')
                 return res.send('Por favor, preencha todos os campos.')
         }
-                  
-        ChefsAdm.create(req.body, function(chef){
-            return res.redirect(`/admin/chefs/${chef.id}`)
+           
+        const results = await ChefsAdm.create(req.body)
+        const chef = results.rows[0]
 
-        })             
+        return res.redirect(`/admin/chefs/${chef.id}`)           
     },
 
-    show(req, res) {
-        ChefsAdm.find(req.params.id, function(chef){
-            if(!chef) return res.send("Chef não encontrado!")
+    async show(req, res) {
+        let results = await ChefsAdm.find(req.params.id)
+        const chef = results.rows[0]
 
-            ChefsAdm.chefRecipes(req.params.id, function(recipes){
+        if(!chef) return res.send("Chef não encontrado!")
 
-                return res.render('admin/chefs/show', { chef, recipes })
-            })
+        results = await ChefsAdm.chefRecipes(req.params.id)
+        const recipes = results.rows
 
-        })
-
+        return res.render('admin/chefs/show', { chef, recipes })
     },
 
-    edit(req, res) {
-        ChefsAdm.find(req.params.id, function(chef){
-            if(!chef) return res.send("Chef não encontrado!")
-            
-            return res.render('admin/chefs/edit', { chef })
-        })
+    async edit(req, res) {
+        const results = await ChefsAdm.find(req.params.id)
+        const chef = results.rows[0]
+
+        if(!chef) return res.send("Chef não encontrado!")
+
+        return res.render('admin/chefs/edit', { chef })
     },
 
-    put(req, res) {
+    async put(req, res) {
         const keys = Object.keys(req.body)
     
         for (key of keys) {
@@ -55,17 +55,15 @@ module.exports = {
                 return res.send('Por favor, preencha todos os campos.')
         }
 
-        ChefsAdm.update(req.body, function(){
-            return res.redirect(`/admin/chefs/${req.body.id}`)
+        await ChefsAdm.update(req.body)
 
-        })        
+        return res.redirect(`/admin/chefs/${req.body.id}`)    
     },
 
-    delete(req, res) {
-        ChefsAdm.delete(req.body.id, function(){
-            return res.redirect('/admin/chefs')
+    async delete(req, res) {
+        await ChefsAdm.delete(req.body.id)
 
-        }) 
+        return res.redirect('/admin/chefs')
     },
 
 }
