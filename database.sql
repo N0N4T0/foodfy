@@ -19,7 +19,7 @@ CREATE TABLE recipes (
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
     ingredients TEXT[] NOT NULL,
-    preparations TEXT[] NOT NULL,
+    preparation TEXT[] NOT NULL,
     information TEXT,
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP DEFAULT NOW(),
