@@ -17,7 +17,9 @@
             {% for recipe in recipes %}
             <div class="card" name="{{recipe.title}}">
                 <a href="/recipe/{{recipe.id}}">
-                    <img src="{{recipe.image}}" alt="{{recipe.title}}">
+                    <img src="{{recipe.image if recipe.image else '//placehold.it/500x500?text=Receita Sem Foto'}}" alt="{{recipe.title}}>
+                    
+                    {# <img src="{{recipe.image}}" alt="{{recipe.title}}"> #}
                     <h2>{{recipe.title}}</h2>
                     <h3>por {{recipe.chef_name}}</h3>
                 </a>

@@ -59,24 +59,20 @@ module.exports = {
     },
     
     async show(req, res) { //exibição da receita
-        try {
-            const {id} = req.params  
-            let results = await Recipes.find(id)
-            const recipe = results.rows[0]
+        const {id} = req.params  
+        let results = await Recipes.find(id)
+        const recipe = results.rows[0]
 
-            results = await Recipes.files(recipe.id)
-            let files = results.rows.map(file => ({
-                ...file,
-                src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
-            }))
+        results = await Recipes.files(recipe.id)
+        let files = results.rows.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+        }))
 
-            // http             ://     localhost:3000/         /images/1598981549938-chef.png
-            // ${req.protocol}  ://     ${req.headers.host}     ${file.path.replace("public", "")
+        // http             ://     localhost:3000/         /images/1598981549938-chef.png
+        // ${req.protocol}  ://     ${req.headers.host}     ${file.path.replace("public", "")
 
-            return res.render('admin/recipes/show', { recipe, files })  
-        } catch (err) {
-            console.error(err)
-        }     
+        return res.render('admin/recipes/show', { recipe, files })  
     },
     
     async edit(req, res) { //página para editar a receita
