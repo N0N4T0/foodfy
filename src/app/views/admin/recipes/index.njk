@@ -14,8 +14,11 @@
             
             {% for recipe in recipes %}
             <div class="card-admin" name="{{recipe.title}}">
-                <div class="card-admin-img">
-                    <img src="{{recipe.image}}" alt="{{recipe.title}}">
+                <div class="card-admin-img">                    
+                    <img 
+                        src="{{recipe.image if recipe.image else '//placehold.it/500x500?text=Receita Sem Foto'}}"
+                        alt="{{recipe.title}}"
+                    >
                 </div>
                 <div class="card-admin-text">
                     <h2>{{recipe.title}}</h2>
@@ -27,6 +30,4 @@
            
         </div>
     </main>
-    
-    <script src="/javascript/script.js"></script>
 {% endblock %}

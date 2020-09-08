@@ -125,7 +125,7 @@ button[type="submit"],
 }
 
 
-/* CREATE RECIPE */
+/* CREATE RECIPE photo*/
 #photos-upload {
    width: 35%;
    cursor: pointer;
@@ -216,6 +216,7 @@ button[type="submit"],
 }
 
 
+/* FORM ADMIN */
 input, select {
     width: 100%;
     border: 1px solid #dddddd;
@@ -321,8 +322,97 @@ input, select {
 }
 
 
+/* FORM CHEF photo*/
+.item #avatar-upload {
+   width: 20%;
+   cursor: pointer;
+   position: relative;
+}
 
-/* CHEFS */
+.item #avatar-upload p {
+    margin-bottom: 15px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 2px -6px #333333;
+    background-color: #6558c3;
+    color: white;
+
+    width: 100%;
+    text-align: center;
+
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.item #avatar-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+
+    cursor: pointer;
+}
+
+.item #avatar-photo-preview {
+    display: flex;
+    width: 20%;
+    height: 100%;
+    margin: 8px 0;    
+}
+
+.item #avatar-photo-preview img {
+    width: 100%;
+    height: 150px;
+
+    object-fit: cover;
+    margin-bottom: 0;   
+}
+
+.item #avatar-photo-preview .photo {
+    display: flex;
+    position: relative;
+
+    align-self: center;
+    padding-top: 0;
+}
+
+.item #avatar-photo-preview .photo i {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background: rgba(255, 255, 255, 0.8);
+
+    color: red;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 500%;
+    cursor: pointer;
+
+    transition: opacity 200ms;
+
+    opacity: 0;
+}
+
+.item #avatar-photo-preview .photo:hover i {
+    opacity: 1;
+}
+
+
+
+
+/* LIST OF CHEFS */
 .chef-admin-cards {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;

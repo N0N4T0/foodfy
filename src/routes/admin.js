@@ -19,8 +19,8 @@ routes.get("/chefs", chefsAdmn.index)
 routes.get("/chefs/create", chefsAdmn.create)
 routes.get("/chefs/:id", chefsAdmn.show)
 routes.get("/chefs/:id/edit", chefsAdmn.edit)
-routes.post("/chefs", chefsAdmn.post)
-routes.put("/chefs", chefsAdmn.put)
+routes.post("/chefs", multer.array("photo", 1), chefsAdmn.post)
+routes.put("/chefs", multer.array("photo", 1), chefsAdmn.put)
 routes.delete("/chefs", chefsAdmn.delete)
 
 

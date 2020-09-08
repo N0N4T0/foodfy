@@ -3,8 +3,23 @@ const File = require("../models/File")
 
 module.exports = {
     async index(req, res) {
-        const results = await Recipes.all()
+        let results = await Recipes.all()
         const recipes = results.rows
+
+        if(!recipes) return res.send('Recipe Not Found!')
+
+        async function getImage(recipeId){
+            let results = await Recipes.files(recipeId)
+            const images = results.rows.map(image => `${req.protocol}://${req.headers.host}${image.path.replace("public", "")}` )
+            return images[0]
+        }
+
+        const imagesPromise = recipes.map( async recipe => {
+            recipe.image = await getImage(recipe.id)
+            return recipe
+        })
+
+        await Promise.all(imagesPromise)
 
         return res.render('admin/recipes/index', { recipes })
     },
@@ -43,7 +58,7 @@ module.exports = {
         return res.redirect(`/admin/recipes/${recipe}`)
     },
     
-    async show(req, res) { //ok
+    async show(req, res) { //exibição da receita
         try {
             const {id} = req.params  
             let results = await Recipes.find(id)
@@ -64,7 +79,7 @@ module.exports = {
         }     
     },
     
-    async edit(req, res) { //ok
+    async edit(req, res) { //página para editar a receita
         const { id } = req.params
 
         let results = await Recipes.find(id)
@@ -84,7 +99,7 @@ module.exports = {
         return res.render('admin/recipes/edit', { recipe, chefOptions: options, files })
     },
     
-    async put(req, res) { //ok
+    async put(req, res) { //ação de edição
         const keys = Object.keys(req.body)
     
         for (key of keys) {

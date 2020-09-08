@@ -3,68 +3,100 @@ const { date } = require("../../lib/utils")
 
 module.exports = {
     all(){
-        return db.query(`SELECT chefs.*, count(recipes) AS total_recipes
-        FROM chefs
-        LEFT JOIN recipes ON (chefs.id = recipes.chef_id)
-        GROUP BY chefs.id
-        ORDER BY chefs.name ASC
-        `)
+        try {
+            return db.query(`SELECT chefs.*, count(recipes) AS total_recipes
+            FROM chefs
+            LEFT JOIN recipes ON (chefs.id = recipes.chef_id)
+            GROUP BY chefs.id
+            ORDER BY chefs.name ASC
+            `)
+
+        } catch (err) {
+            console.log(err)
+        }        
     },
 
-    create(data){
-        const query = `
-        INSERT INTO chefs(
-            name,
-            avatar_url,
-            created_at
-        ) VALUES ($1, $2, $3)
-            RETURNING id
-        `
+    create(data, fileId){
+        try {
+            const query = `
+                INSERT INTO chefs(
+                    name,
+                    created_at,
+                    updated_at,
+                    file_id
+                ) VALUES ($1, $2, $3, $4)
+                    RETURNING id
+            `
 
-        const values = [
-            data.name,
-            data.avatar_url,
-            date(Date.now()).iso
-        ]
+            const values = [
+                data.name,
+                date(Date.now()).iso,
+                date(Date.now()).iso,
+                fileId
+            ]
 
-        return db.query(query, values)
+            return db.query(query, values)
+
+        } catch (err) {
+            console.log(err)
+        }        
     },
 
     find(id){
-        return db.query(`
-        SELECT chefs.*, count(recipes) AS total_recipes
-        FROM chefs
-        LEFT JOIN recipes ON (chefs.id = recipes.chef_id)
-        WHERE chefs.id = $1
-        GROUP BY chefs.id
-        `, [id])
+        try {
+            return db.query(`
+            SELECT chefs.*, count(recipes) AS total_recipes
+            FROM chefs
+            LEFT JOIN recipes ON (chefs.id = recipes.chef_id)
+            WHERE chefs.id = $1
+            GROUP BY chefs.id
+            `, [id])
+
+        } catch (err) {
+            console.log(err)
+        }        
     },
 
-    update(data){
-        const query =`
-        UPDATE chefs SET
-            name = ($1),
-            avatar_url = ($2)
-        WHERE id = $3
-        `
-        const values = [
-            data.name,
-            data.avatar_url,
-            data.id,
-        ]
+    update(data, fileId){
+        try {
+            const query =`
+            UPDATE chefs SET
+                name = ($1),
+                file_id=($2)
+            WHERE id = $3
+            `
+            const values = [
+                data.name,
+                fileId,
+                data.id,
+            ]
 
-        return db.query(query, values)    
+            return db.query(query, values)  
+
+        } catch (err) {
+            console.error(err)
+        }       
     },
 
     delete(id){
-        return db.query(`DELETE FROM chefs WHERE id = $1`, [id])
+        try {
+            return db.query(`DELETE FROM chefs WHERE id = $1`, [id])
+
+        } catch (err) {
+            console.error(err)
+        }        
     },
 
     chefRecipes(id){
-        return db.query(`
-        SELECT * FROM recipes
-        WHERE chef_id = $1
-        `, [id])
+        try {
+            return db.query(`
+            SELECT * FROM recipes
+            WHERE chef_id = $1
+            `, [id])
+
+        } catch (err) {
+            console.error(err)
+        }        
     }
 
 

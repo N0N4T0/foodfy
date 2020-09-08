@@ -1,14 +1,117 @@
-//Selecionar active por página
-// const currentPage = location.pathname
-// const menuItems = document.querySelectorAll(".menu-main a")
+const AvatarPhotoUpload = {
+    input: "",
+    preview: document.querySelector('#avatar-photo-preview'), 
+    uploadLimit: 1,
+    files: [],
+    handleFileInput(event) {
+        const {files: fileList} = event.target
+        AvatarPhotoUpload.input = event.target
 
-// for (item of menuItems){
-//     if (currentPage.includes(item.getAttribute("href"))){
-//         item.classList.add("active")
-//     }
-// }
-// console.log(currentPage)
+        if (AvatarPhotoUpload.hasLimit(event)) return
 
+        Array.from(fileList).forEach(file => {
+            AvatarPhotoUpload.files.push(file)
+            
+            const reader = new FileReader()
+
+            reader.onload = () => {
+                const image = new Image() // cria tag html <img>
+                image.src = String(reader.result)
+
+                const div = AvatarPhotoUpload.getContainer(image)
+
+                AvatarPhotoUpload.preview.appendChild(div)
+            }
+
+            reader.readAsDataURL(file)
+        })
+        
+        AvatarPhotoUpload.input.files = AvatarPhotoUpload.getAllFiles()
+    },
+
+    hasLimit(event){
+        const { uploadLimit, input, preview } = AvatarPhotoUpload
+        const { files: fileList } = input    
+
+        if (fileList.length > uploadLimit) {
+            alert(`Envie no máximo ${uploadLimit} foto`)
+            event.preventDefault()
+
+            return true
+        }
+
+        const photosDiv = []
+        preview.childNodes.forEach(item => {
+            if (item.classList && item.classList.value == "photo")
+                photosDiv.push(item)
+        })
+
+        const totalPhotos = fileList.length + photosDiv.length
+        if (totalPhotos > uploadLimit) {
+            alert("Você atingiu o limite máximo de fotos.")
+            event.preventDefault()
+
+            return true
+        }
+
+        return false
+    },
+
+    getAllFiles() {
+        const dataTransfer = new ClipboardEvent("").clipboardData || new DataTransfer()
+
+        AvatarPhotoUpload.files.forEach(file => dataTransfer.items.add(file))
+
+        // console.log(dataTransfer)
+        return dataTransfer.files
+    },
+    
+    getContainer(image) {
+        const div = document.createElement('div')
+        div.classList.add('photo')
+
+        div.onclick = AvatarPhotoUpload.removePhoto
+
+        div.appendChild(image) //colocando image dentro da div
+
+        div.appendChild(AvatarPhotoUpload.getRemoveButton())
+
+        return div
+    },
+
+    getRemoveButton() {
+        const button = document.createElement('i')
+
+        button.classList.add('material-icons')
+        button.innerHTML = "close"
+
+        return button
+    },
+
+    removePhoto(event) {
+        const photoDiv = event.target.parentNode // i @ <div class="photo">
+        const photosArray = Array.from(AvatarPhotoUpload.preview.children)
+        const index = photosArray.indexOf(photoDiv)
+
+        AvatarPhotoUpload.files.splice(index, 1)
+        AvatarPhotoUpload.input.files = AvatarPhotoUpload.getAllFiles()
+
+        photoDiv.remove()
+    },
+
+    removeOldPhoto(event) {
+        const photoDiv = event.target.parentNode
+
+        if (photoDiv.id) {
+            const removedFiles = document.querySelector('input[name="removed_files"')
+            if (removedFiles) {
+                removedFiles.value += `${photoDiv.id},`
+            }
+        }
+
+        photoDiv.remove()
+    }
+}
 
 const PhotosUpload = {
     input: "",
@@ -156,3 +259,16 @@ const ImageGallery = {
 //         Lightbox.closeButton.style.top = "-80px"
 //     }
 // }
+
+
+
+//Selecionar active por página
+// const currentPage = location.pathname
+// const menuItems = document.querySelectorAll(".menu-main a")
+
+// for (item of menuItems){
+//     if (currentPage.includes(item.getAttribute("href"))){
+//         item.classList.add("active")
+//     }
+// }
+// console.log(currentPage)

@@ -7,6 +7,7 @@
             class="card-chef" 
             action="/admin/chefs/{{chef.index}}?_method=put"
             method="POST"
+            enctype="multipart/form-data"
             >
             
             <div class="edit-title">
@@ -32,5 +33,5 @@
     {# {% include "admin/chefs/confirmChefDelete.njk" %} #}
 
 
-    <script src="/javascript/script.js"></script>
+    {# <script src="/javascript/script.js"></script> #}
 {% endblock %}
