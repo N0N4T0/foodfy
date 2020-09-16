@@ -1,6 +1,9 @@
 const db = require("../../config/db")
 const { date } = require("../../lib/utils")
 
+const File = require("../models/File")
+const fs = require('fs')
+
 
 module.exports = {
     all(){
@@ -88,10 +91,36 @@ module.exports = {
         }          
     },
 
-    delete(id){
-        try {
-        return db.query(`DELETE FROM recipes WHERE id = $1`, [id])
+    async delete(id){
+        try {           
+            //quantos arquivos de receita tem
+            let results = await db.query(`
+            SELECT files.* FROM files 
+            LEFT JOIN recipe_files ON (files.id = recipe_files.file_id) 
+            LEFT JOIN recipes ON (recipes.id = recipe_files.recipe_id)
+            WHERE recipes.id = $1
+            `, [id])
+
+            const recipes_files = results.rows
+
+            //dos recipe_files pegar todas as imagens
+            const allFilesPromise = recipes_files.map(recipe_file =>
+                File.delete(recipe_file.id))
+
+            await Promise.all(allFilesPromise)
+
+            // promiseResults.map(results => {
+            //     results.rows.map(file => {
+            //         try {
+            //             fs.unlinkSync(file.path)
+            //         } catch (err) {
+            //             console.error(err)
+            //         }
+            //     })
+            // })
             
+            return db.query(`DELETE FROM recipes WHERE id = $1`, [id])
+
         } catch (err) {
             console.error(err)
         }

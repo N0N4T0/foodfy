@@ -2,6 +2,7 @@
 
 :root {
     --color-black: #111111;
+    --primary-color: rgb(78, 111, 126);
 }
 
 * {
@@ -86,7 +87,7 @@ header nav h2 {
 }
 
 #search button {
-    background-color: #6558C3;
+    background-color: var(--primary-color);
     color: #FFFFFF;
 
     font-family: 'Roboto', sans-serif;

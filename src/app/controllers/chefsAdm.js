@@ -47,9 +47,9 @@ module.exports = {
 
         const imageId = results.rows[0].id
         results = await ChefsAdm.create(req.body, imageId)
-        const chef = results.rows[0]
+        const chef = results.rows[0].id
 
-        return res.redirect(`/admin/chefs/${chef.id}`)           
+        return res.redirect(`/admin/chefs/${chef}`)           
     },
 
     async show(req, res) {
@@ -91,12 +91,12 @@ module.exports = {
         if(!chef) return res.send("Chef não encontrado!")
 
         results = await File.find(chef.file_id)
-        let avatar = results.rows.map(avatar => ({
+        let avatars = results.rows.map(avatar => ({
             ...avatar,
             src: `${req.protocol}://${req.headers.host}${avatar.path.replace("public", "")}`
         }))
 
-        return res.render('admin/chefs/edit', { chef, avatar })
+        return res.render('admin/chefs/edit', { chef, avatars })
     },
 
     async put(req, res) {//ação da página de editar, a atulização em si
@@ -107,10 +107,16 @@ module.exports = {
                 return res.send('Por favor, preencha todos os campos.')
         }
    
-        if(req.files.length == 0) {
-            return res.send('Envie ao menos uma imagem')
+        if(req.files.length != 0) {
+            const imagesPromise = req.files.map(file => File.create({
+                ...file,
+                path: file.path.replace(/\\/g, "/" )
+            }))
+
+            await Promise.all(imagesPromise)
         }
-        
+
+            
         const imagesPromise = req.files.map(file => File.create({...file}))
         let results = await imagesPromise[0]
 

@@ -78,7 +78,7 @@
 .button,
 button[type="submit"],
 .title button {
-    background-color: #6558c3;
+    background-color: var(--primary-color);
     border-radius: 4px;
     font-family: 'Roboto', sans-serif;
 
@@ -120,7 +120,7 @@ button[type="submit"],
 }
 
 .add-item a {
-    color: #6558c3;
+    color: var(--primary-color);
     font-weight: bold;
 }
 
@@ -288,7 +288,7 @@ input, select {
 }
 
 .card-admin a {
-    color: #6558c3;
+    color: var(--primary-color);
     padding-left: 15px;
     font-weight: bold;
 }
@@ -334,7 +334,7 @@ input, select {
     padding: 8px 16px;
     border-radius: 4px;
     box-shadow: 0 2px 2px -6px #333333;
-    background-color: #6558c3;
+    background-color: var(--primary-color);
     color: white;
 
     width: 100%;
@@ -360,14 +360,16 @@ input, select {
 
 .item #avatar-photo-preview {
     display: flex;
-    width: 20%;
+    width: 200px;
     height: 100%;
     margin: 8px 0;    
 }
 
 .item #avatar-photo-preview img {
-    width: 100%;
-    height: 150px;
+    width: 200px;
+    height: 200px;
+
+    border-radius: 50%;
 
     object-fit: cover;
     margin-bottom: 0;   
@@ -408,8 +410,6 @@ input, select {
 .item #avatar-photo-preview .photo:hover i {
     opacity: 1;
 }
-
-
 
 
 /* LIST OF CHEFS */
@@ -476,7 +476,7 @@ input, select {
 }
 
 .chefsText a{
-    color: #6558c3;
+    color: var(--primary-color);
     font-weight: bold;
     font-size: 14px;
 }
@@ -542,4 +542,61 @@ input, select {
 .details .gallery-preview img:hover,
 .details .gallery-preview img.active {
     opacity: 1;
+}
+
+
+/* LIGHTBOX RECIPES GALLERY */
+.details .highlight .lightbox-target {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .7);
+
+    overflow: hidden;
+    z-index: 100;
+
+    top: -100%;
+    left: 0;
+    opacity: 0;
+
+    transition: opacity 400ms;
+}
+
+.details .highlight .lightbox-target img {
+    margin: auto;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    background-color: rgb(168, 116, 85);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, .3);
+
+    width: 90%;
+    height: 90%;
+
+    object-fit: contain;
+}
+
+.details .highlight a.lightbox-close {
+    width: 50px;
+    height: 50px;
+
+    background: rgb(252, 93, 1);
+
+    position: absolute;
+    top: -80px;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 400ms;
+}
+
+.details .highlight .lightbox-target i {
+    color: rgb(255, 255, 255);
 }

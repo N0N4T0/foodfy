@@ -61,7 +61,7 @@
 }
 
 .chefsText a{
-    color: #6558c3;
+    color: var(--primary-color);
     font-weight: bold;
     font-size: 14px;
 }

@@ -10,30 +10,33 @@
 
 <div class="item">
     <div>Avatar</div>
-    <div id="avatar-upload">
-        <input 
-            id="avatar-input"
-            type="file"
-            name="photo"
-            multiple
-            accept="image/*"
-            onchange="AvatarPhotoUpload.handleFileInput(event)"
-        >
-        <p>Enviar Avatar</p>
-    </div>
-    <div id="avatar-photo-preview">
-            {% if files %}
-                {% for photo in files %}
-                    <div class="photo" id="{{photo.id}}">
-                        <img src="{{photo.src}}" alt="{{photo.name}}">
-                        <i class="material-icons"
-                            onclick="AvatarPhotoUpload.removeOldPhoto(event)"
-                        >
-                        close
-                        </i>
-                    </div>
+    <div>
+        <div id="avatar-upload">
+            <input 
+                id="avatar-input"
+                type="file"
+                name="photo"
+                multiple
+                accept="image/*"
+                onchange="AvatarPhotoUpload.handleFileInput(event)"
+            >
+            <p>Enviar Avatar</p>
+        </div>
+
+        <div id="avatar-photo-preview">
+            {% if avatars %}
+                {% for avatar in avatars%}
+                <div class="photo" id="{{avatar.id}}">
+                    <img src="{{avatar.src}}" alt="{{avatar.name}}">
+                    <i class="material-icons"
+                        onclick="PhotosUpload.removeOldPhoto(event)"
+                    >
+                    close
+                    </i>
+                </div>
                 {% endfor %}
                 <input type="hidden" name="removed_files">
             {% endif %}
         </div>
+    </div>
 </div>

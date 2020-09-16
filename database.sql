@@ -1,6 +1,9 @@
 DROP DATABASE IF EXISTS foodfy;
 CREATE DATABASE foodfy;
 
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+
 CREATE TABLE files (
     id SERIAL PRIMARY KEY,
     name TEXT,
@@ -32,13 +35,8 @@ CREATE TABLE recipe_files (
     id SERIAL PRIMARY KEY,
 
     recipe_id INTEGER NOT NULL
-    REFERENCES recipes(id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-
+    REFERENCES recipes(id),
 
     file_id INTEGER NOT NULL
     REFERENCES files(id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
 );

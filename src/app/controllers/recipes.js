@@ -127,8 +127,18 @@ module.exports = {
     },
     
     async delete(req, res) {
-        await Recipes.delete(req.body.id)
+        try {
+            //pegar id da receita
+            //pegar os recipes_files
+            //pegar os files
+            const { id } = req.body
 
-        return res.redirect('/admin/recipes')        
+            await Recipes.delete(id)
+          
+            return res.redirect('/admin/recipes') 
+            
+        } catch (err) {
+            console.error(err)
+        }       
     }
 }
