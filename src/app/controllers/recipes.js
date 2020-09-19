@@ -111,10 +111,12 @@ module.exports = {
             await Promise.all(newFilesPromise)    
         }
 
+        //remover do banco ao atualizar
         if(req.body.removed_files) {
-            const removedFiles = req.body.removed_files.split(",")
+            //1,2,3,
+            const removedFiles = req.body.removed_files.split(",")//split = separa por vírgulas [1,2,3,]
             const lastIndex = removedFiles.length - 1
-            removedFiles.splice(lastIndex, 1)
+            removedFiles.splice(lastIndex, 1)//tira uma posição do lastIndex [1,2,3]
 
             const removedFilesPromise = removedFiles.map(id => File.delete(id))
 

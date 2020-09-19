@@ -106,21 +106,31 @@ module.exports = {
             if (req.body[key] == '' && key != "removed_files")
                 return res.send('Por favor, preencha todos os campos.')
         }
-   
-        if(req.files.length != 0) {
-            const imagesPromise = req.files.map(file => File.create({
-                ...file,
-                path: file.path.replace(/\\/g, "/" )
-            }))
-
-            await Promise.all(imagesPromise)
-        }
-
-            
+                    
         const imagesPromise = req.files.map(file => File.create({...file}))
         let results = await imagesPromise[0]
 
         const imageId = results.rows[0].id
+
+        //novo
+        if(req.body.removed_files) {
+            //6,
+            const removedFiles = req.body.removed_files.split(",")//split = separa por vírgulas [6,]
+            const lastIndex = removedFiles.length - 1
+            removedFiles.splice(lastIndex, 1)//tira uma posição do lastIndex [6]
+
+
+            console.log(req.body.removed_files)
+            console.log(removedFiles)
+            console.log(removedFiles.length)
+            console.log(lastIndex) 
+
+            
+            const removedFilesPromise = removedFiles.map(id => File.delete(id))
+
+            await Promise.all(removedFilesPromise)                      
+        }
+        
         await ChefsAdm.update(req.body, imageId)
 
         return res.redirect(`/admin/chefs/${req.body.id}`)    
