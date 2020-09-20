@@ -49,7 +49,7 @@ module.exports = {
 
         const imagesPromise = req.files.map(file => File.createRecipeFiles({
             ...file,
-            path: file.path.replace(/\\/g, "/" ),
+            // path: file.path.replace(/\\/g, "/" ),
             recipe_id: recipe
         }))
         

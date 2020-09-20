@@ -19,7 +19,7 @@ main h1 {
 }
 
 .card:hover {
-    background-color: rgb(201, 163, 163);
+    background-color: rgb(255, 177, 131);
     transition: 400ms;
     border-radius: 15px;
 }

@@ -84,7 +84,7 @@ module.exports = {
             return recipe
         })
         
-        Promise.all(imagesPromise)
+        await Promise.all(imagesPromise)
 
         return res.render("main/search", { recipes, filter })          
     }

@@ -1,5 +1,8 @@
 const db = require("../../config/db")
 const { date } = require("../../lib/utils")
+const chefsAdm = require("../controllers/chefsAdm")
+
+const File = require("../models/File")
 
 module.exports = {
     all(){
@@ -78,8 +81,8 @@ module.exports = {
         }       
     },
 
-    delete(id){
-        try {
+    async delete(id){
+        try {            
             return db.query(`DELETE FROM chefs WHERE id = $1`, [id])
 
         } catch (err) {

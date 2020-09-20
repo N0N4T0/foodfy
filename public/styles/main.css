@@ -28,16 +28,16 @@ header nav {
     margin-bottom: 3.3%;
 }
 
-header nav a {
+/* header nav a h2 {
     text-decoration: none;
     color: var(--color-black);
+} */
+
+.active {
+    color: #1a688b; 
 }
 
-header nav a.active {
-    color: rgb(255, 145, 0); 
-}
-
-header nav a:hover {
+.menu-main a h2:hover {
    color: orangered;   
 }
 
@@ -110,7 +110,7 @@ header nav h2 {
     display: flex;
     height: 366px;
     border-radius: 30px;
-    background-color: #FBDFDB;
+    background-color: rgba(255, 187, 98, 0.767);
     align-items: center;
     margin-bottom: 50px;
 }

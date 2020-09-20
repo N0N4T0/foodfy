@@ -41,7 +41,7 @@ module.exports = {
 
         const imagesPromise = req.files.map(file => File.create({
             ...file,
-            path: file.path.replace(/\\/g, "/" )
+            // path: file.path.replace(/\\/g, "/" )
         }))
         let results = await imagesPromise[0]
 
@@ -112,34 +112,34 @@ module.exports = {
 
         const imageId = results.rows[0].id
 
-        //novo
+        await ChefsAdm.update(req.body, imageId)
+
+        //se atualizar a foto, remove a antiga
         if(req.body.removed_files) {
             //6,
             const removedFiles = req.body.removed_files.split(",")//split = separa por vírgulas [6,]
             const lastIndex = removedFiles.length - 1
             removedFiles.splice(lastIndex, 1)//tira uma posição do lastIndex [6]
-
-
-            console.log(req.body.removed_files)
-            console.log(removedFiles)
-            console.log(removedFiles.length)
-            console.log(lastIndex) 
-
             
             const removedFilesPromise = removedFiles.map(id => File.delete(id))
 
             await Promise.all(removedFilesPromise)                      
-        }
-        
-        await ChefsAdm.update(req.body, imageId)
+        }       
 
         return res.redirect(`/admin/chefs/${req.body.id}`)    
     },
 
     async delete(req, res) {
-        await ChefsAdm.delete(req.body.id)
+        try {
+            const { id } = req.body
 
-        return res.redirect('/admin/chefs')
+            await ChefsAdm.delete(id)
+
+            return res.redirect('/admin/chefs')
+
+        } catch (err) {
+            console.error(err)
+        }
     },
 
 }

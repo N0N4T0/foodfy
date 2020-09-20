@@ -2,7 +2,6 @@ const db = require("../../config/db")
 const { date } = require("../../lib/utils")
 
 const File = require("../models/File")
-const fs = require('fs')
 
 
 module.exports = {
@@ -108,16 +107,6 @@ module.exports = {
                 File.delete(recipe_file.id))
 
             await Promise.all(allFilesPromise)
-
-            // promiseResults.map(results => {
-            //     results.rows.map(file => {
-            //         try {
-            //             fs.unlinkSync(file.path)
-            //         } catch (err) {
-            //             console.error(err)
-            //         }
-            //     })
-            // })
             
             return db.query(`DELETE FROM recipes WHERE id = $1`, [id])
 
