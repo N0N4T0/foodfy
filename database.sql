@@ -40,3 +40,18 @@ CREATE TABLE recipe_files (
     file_id INTEGER NOT NULL
     REFERENCES files(id)
 );
+
+-- create procedure
+CREATE FUNCTION trigger_set_timestamp()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = NOW();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- auto updated_at recipes
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON recipes
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();

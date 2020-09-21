@@ -21,49 +21,45 @@ main, .cards {
     max-width: 940px;
 }
 
-header {
-    display: flex;
-    margin: 0 auto;
-    max-width: 940px;
-    height: 100px;
-}
-
-header a img {
-    margin-right: 40px;
-}
-
-.menu-content {
+.menu {
     display: flex;
     align-items: center;
     width: 100%;
+    background-color: rgba(155, 119, 117, 0.514);
+    height: 80px;
+
+    margin-bottom: 3.3%;
 }
 
-header h2 {
+.menu_width {
+    display: flex;
+    max-width: 940px;
+    margin: 0 auto 0 auto;
+    flex: 1;
+}
+
+.menu a:first-child {
+    margin-right: 50.4px;
+}
+
+.menu a {
+    margin-right: 30px;
+    align-self: center;
+}
+
+.menu .menu_width a.active h2{
+    color: #1a688b; 
+    font-weight: bold;
+}
+
+.menu h2 {
    font-size: 16px;
    font-family: 'Roboto-Regular', sans-serif;
    font-weight: normal;
 }
 
-.menu-main {
-    display: flex;
-    margin-right: 39%;
-}
-
-.menu-main a {
-    margin-left: 33%;
-    justify-content: space-between;
-}
-
-.menu-main a.active {
-    /* color: #1a688b;  */
-    color: red;
-}
-
-.menu-main a h2:hover {
-   color: orangered;   
-}
-
 #search {
+    margin-left: 18%;
     display: block;
 }
 
@@ -98,6 +94,29 @@ header h2 {
     border-color: unset;
     border-style: unset;
     cursor: pointer;
+}
+
+#login-button {
+    display: flex;
+    width: 91px;
+    height: 37px;
+    border-radius: 4px;
+    
+    align-self: center;
+
+    cursor: pointer;
+    background-color: rgb(255, 94, 0);
+}
+
+#login-button a {
+   margin: 0 auto;
+}
+
+#login-button a h3 {
+    color: white;
+    
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
 }
 
 .information.hidden {

@@ -18,14 +18,12 @@
 
     <body>
         <header>
-            <div class="menu-content">
-                <a href="/">
-                    <div>
+            <div class="menu">
+                <div class="menu_width">
+                    <a href="/">
                         <img src="/assets/logo.png" alt="imagem de Foodfy">
-                    </div>
-                </a> 
-
-                <div class="menu-main">
+                    </a>           
+            
                     <a href="/about">
                         <h2>Sobre</h2>
                     </a>
@@ -37,13 +35,14 @@
                     <a href="/chefs">
                         <h2>Chefs</h2>
                     </a>
+
+                
+                    {% block search %}{% endblock %}
+
                 </div>
+            </div>    
+        </header>
 
-                {% block search %}{% endblock %}
-
-            </div>
-            
-        </header>    
         {% block content %} {% endblock %}
 
         <footer>
