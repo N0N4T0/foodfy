@@ -5,14 +5,15 @@ const File = require("../models/File")
 
 
 module.exports = {
-    all(){
+    all(params){
         try {
             return db.query(`
                 SELECT recipes.*, chefs.name AS chef_name 
                 FROM recipes
                 LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-                ORDER BY recipes.title ASC
-            `)
+                ORDER BY updated_at DESC
+                LIMIT $1 OFFSET $2
+            `,  [params.limit, params.offset])
 
         } catch (err) {
             console.error(err)

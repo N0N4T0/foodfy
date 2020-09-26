@@ -3,7 +3,13 @@ const File = require("../models/File")
 
 module.exports = {
     async index(req, res) {
-        let results = await Recipes.all()
+        let {limit, page} = req.query, offset
+        limit = limit || 6
+        page = page || 1
+        offset = limit * (page -1)
+        const params = {limit, page, offset}
+
+        let results = await Recipes.all(params)
         const recipes = results.rows
 
         if(!recipes) return res.send('Recipe Not Found!')
@@ -19,9 +25,11 @@ module.exports = {
             return recipe
         })
 
-        await Promise.all(imagesPromise)
+        const lastAdded = await Promise.all(imagesPromise)
 
-        return res.render('admin/recipes/index', { recipes })
+        const pagination = {total: Math.ceil(recipes[0].total / limit), page} 
+
+        return res.render('admin/recipes/index', { recipes: lastAdded, pagination })
     },
     
     async create(req, res){

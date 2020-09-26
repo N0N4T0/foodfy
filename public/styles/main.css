@@ -170,3 +170,37 @@ footer h3 {
     color: #999999;
     font-weight: normal;
 }
+
+
+
+/* PAGINATION */
+.pagination {
+    margin-top: 50px;
+}
+
+.pagination-controls{
+    margin: 0 auto;
+    margin-bottom: 16px;
+    display: grid;
+    width: 200px;
+    gap:20px;
+    grid-template-columns: repeat(5, 1fr);
+    cursor: pointer;
+}
+
+.pagination-controls .item-control:hover, .active-item-control{
+    color: #4e6f7e;
+}
+
+.pages-list{
+    display: flex;
+    justify-content: center;
+}
+
+.pages-list div{
+    margin-right: 24px;
+}
+
+.pages-list div:last-child{
+    margin-right: 0;
+}

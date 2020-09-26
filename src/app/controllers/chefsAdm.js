@@ -4,7 +4,13 @@ const Recipes = require("../models/Recipes")
 
 module.exports = {
     async index(req, res) {
-        const results = await ChefsAdm.all()
+        let {limit, page} = req.query, offset
+        limit = limit || 8
+        page = page || 1
+        offset = limit * (page - 1)
+        const params = {limit, page, offset}
+
+        const results = await ChefsAdm.all(params)
         const chefs = results.rows
         
         async function getImage(fileId){
@@ -18,9 +24,11 @@ module.exports = {
             return chef
         })
 
-        await Promise.all(imagesPromise)
+        const lastAdded = await Promise.all(imagesPromise)
 
-        return res.render('admin/chefs/index', { chefs })
+        const pagination = {total: Math.ceil(chefs[0].total / limit), page}
+
+        return res.render('admin/chefs/index', { chefs: lastAdded, pagination })
     },
 
     create(req, res) {
@@ -53,12 +61,13 @@ module.exports = {
     },
 
     async show(req, res) {
-        let results = await ChefsAdm.find(req.params.id)
+        const {id} = req.params
+        let results = await ChefsAdm.find(id)
         const chef = results.rows[0]
 
         if(!chef) return res.send("Chef não encontrado!")
 
-        results = await ChefsAdm.chefRecipes(req.params.id)
+        results = await ChefsAdm.chefRecipes(id)
         const recipes = results.rows
 
         results = await File.find(chef.file_id)
@@ -78,9 +87,9 @@ module.exports = {
             return recipe
         })
 
-        await Promise.all(imagesPromise)
+        const lastAdded = await Promise.all(imagesPromise)
 
-        return res.render('admin/chefs/show', { chef, recipes, avatar })
+        return res.render('admin/chefs/show', { chef, recipes: lastAdded, avatar })
     },
 
     async edit(req, res) {//pagina de editar 

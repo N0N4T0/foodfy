@@ -1,16 +1,16 @@
 const db = require("../../config/db")
-const { date } = require("../../lib/utils")
 
 
 module.exports = {
-    all(){
+    all(params){
         try {
             return db.query(`
                 SELECT recipes.*, chefs.name AS chef_name 
                 FROM recipes
                 LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-                ORDER BY recipes.title ASC
-            `)
+                ORDER BY updated_at DESC
+                LIMIT $1 OFFSET $2
+            `,  [params.limit, params.offset])
 
         } catch (err) {
             console.error(err)
@@ -42,14 +42,25 @@ module.exports = {
         }        
     },
 
-    findByRecipes(filter) {
+    findByRecipes(params) {
         try {
-            return db.query(`
-                SELECT recipes.*, chefs.name AS chef_name
-                FROM recipes
+            let filterQuery = ``,
+                totalQuery = `(SELECT count(*) FROM recipes) AS total`
+
+            if(params.filter){
+                filterQuery = `WHERE recipes.title ILIKE '%${params.filter}%'`
+                totalQuery = `(SELECT count(*) FROM recipes ${filterQuery}) AS total`
+            }
+
+            let query = `
+                SELECT recipes.*, ${totalQuery}, chefs.name AS chef_name FROM recipes
                 LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-                WHERE recipes.title ILIKE '%${filter}%'
-            `)
+                ${filterQuery}
+                ORDER BY updated_at DESC
+                LIMIT $1 OFFSET $2
+            `
+
+            return db.query(query, [params.limit, params.offset])
 
         } catch (err) {
             console.error(err)

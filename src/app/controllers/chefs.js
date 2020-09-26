@@ -3,7 +3,13 @@ const File = require("../models/File")
 
 module.exports = {
     async index(req, res) {
-        const results = await Chefs.all()
+        let {limit, page} = req.query, offset
+        limit = limit || 8
+        page = page || 1
+        offset = limit * (page - 1)
+        const params = {limit, page, offset}
+
+        const results = await Chefs.all(params)
         const chefs = results.rows
 
         async function getImage(fileId){
@@ -17,9 +23,11 @@ module.exports = {
             return chef
         })
 
-        await Promise.all(imagesPromise)
+        const lastAdded = await Promise.all(imagesPromise)
 
-        return res.render('main/chefs', { chefs })
+        const pagination = {total: Math.ceil(chefs[0].total / limit), page}
+
+        return res.render('main/chefs', { chefs: lastAdded, pagination })
     }
 
 }
