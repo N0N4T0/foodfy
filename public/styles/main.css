@@ -47,8 +47,9 @@ main, .cards {
     align-self: center;
 }
 
-.menu .menu_width a.active h2{
-    color: #1a688b; 
+.menu .menu_width a.active h2,
+.admin .menu_width a.active h2{
+    color: white; 
     font-weight: bold;
 }
 

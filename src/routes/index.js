@@ -2,10 +2,10 @@ const express = require('express')
 const routes = express.Router()
 
 const admin = require("./admin")
+const users = require("./users")
 
 const main = require("../app/controllers/main")
 const chefs = require("../app/controllers/chefs")
-
 
 //rotas
 
@@ -21,6 +21,7 @@ routes.get('/chefs', chefs.index)
 
 
 routes.use('/admin', admin)
+routes.use('/users', users)
 
 
 
