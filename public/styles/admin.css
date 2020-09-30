@@ -601,3 +601,28 @@ input, select {
 .details .highlight .lightbox-target i {
     color: rgb(255, 255, 255);
 }
+
+
+
+
+/* Usuário Logado */
+.user-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* .user-details .item:first-child,
+.user-details .item
+{
+    padding-right: 5%;
+} */
+
+.user-details .item:first-child + .item {
+    padding-left: 5%;
+}
+
+
+
+
+
+/* GERENCIAMENTO DE USUÁRIOS: LISTAGEM */

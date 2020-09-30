@@ -6,32 +6,26 @@
 
 {% block content %}
     <main>
-         <div class="title">
-            <h1>Bem vindo Diego</h1>
-            <a class="button"
-               href="/admin/chefs/create">
-               Novo chef
-            </a>
-        </div>
+        <form 
+            class="card-user"
+            action="/admin/users/{{user.index}}?_method=put" 
+            method="POST"
+            >
 
-        <div class="chef-admin-cards">
-
-            {% for chef in chefs %}
-            <div class="chefsPosition">
-                <div>
-                    <img src="{{chef.avatar if chef.avatar else '//placehold.it/500x500?text=Sem Avatar'}}" alt="Foto do Chef">
-                </div>
-                <div class="chefsText">
-                    <h1>{{chef.name}}</h1>
-                    <h3>{{chef.total_recipes}} receitas</h3>
-                    <a href="/admin/chefs/{{chef.id}}">Visualizar</a>
-                </div>
+            <div class="title">
+                <h1>Bem vindo Diego</h1>
+                <button type="submit"class="button">Salvar</button>
             </div>
-            {% endfor %}
 
-        </div>
+            <section class="details user-details">
 
-        {% block pagination%} {% include "parts/pagination.njk" %} {% endblock %}
+                {% include 'admin/users/fields.njk' %}
+        
+            </section>
+
+        </form>
+
+        
 
     </main>
 {% endblock content %}
