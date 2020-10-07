@@ -1,0 +1,63 @@
+{% extends "layouts/admin.njk" %}
+
+{% block head %}
+    <title>Admin Users - Foodfy</title>
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="title">
+            <h1>Usuários</h1>
+            <a class="button"
+               href="/admin/users/create">
+               Novo
+            </a>
+        </div>
+
+        <div class="cards-admin-users">
+            
+            <div class="card-admin-user" name="{{recipe.title}}">
+                <h2>Diego Fernandes</h2>
+                <h3>diego@rocketseat.com.br</h3>
+                
+                <div class="user-action">
+                    <a>Editar</a>
+                    <a>Remover</a>
+                </div>
+            </div>
+
+            <div class="card-admin-user" name="{{recipe.title}}">
+                <h2>Diego Fernandes</h2>
+                <h3>diego@rocketseat.com.br</h3>
+                
+                <div class="user-action">
+                    <a>Editar</a>
+                    <a>Remover</a>
+                </div>
+            </div>
+
+            <div class="card-admin-user" name="{{recipe.title}}">
+                <h2>Diego Fernandes</h2>
+                <h3>diego@rocketseat.com.br</h3>
+                
+                <div class="user-action">
+                    <a>Editar</a>
+                    <a>Remover</a>
+                </div>
+            </div>   
+
+            <div class="card-admin-user" name="{{recipe.title}}">
+                <h2>Diego Fernandes</h2>
+                <h3>diego@rocketseat.com.br</h3>
+                
+                <div class="user-action">
+                    <a>Editar</a>
+                    <a>Remover</a>
+                </div>
+            </div>         
+        </div>
+
+        {# caminho é http://localhost:3000/users/admin/users #}
+
+    </main>
+{% endblock content %}

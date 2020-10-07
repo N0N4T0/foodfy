@@ -626,3 +626,43 @@ input, select {
 
 
 /* GERENCIAMENTO DE USUÁRIOS: LISTAGEM */
+.cards-admin-users {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 25px;
+}
+
+.card-admin-user h2 {
+    margin-top: 10px;
+    color: #111111;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.card-admin-user h3 {
+    color: #777777;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 24px;
+    text-align: left;
+}
+
+.card-admin-user .user-action {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+    margin-top: 15px;
+}
+
+.card-admin-user .user-action a {
+    font-size: 14px;
+    font-weight: bold;
+
+    color: rgb(0, 60, 255);
+}
+
+.card-admin-user .user-action a + a {
+    color: red;
+}

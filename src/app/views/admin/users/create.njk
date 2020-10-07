@@ -1,0 +1,21 @@
+{% extends "layouts/admin.njk" %}
+
+
+{% block content %}
+
+        <form class="card-recipe" method="POST" action="/admin/recipes" enctype="multipart/form-data">
+            <div class="title">
+                <h1>Criando USUÁRIO</h1>
+                <button type="submit">Salvar receita</button>
+            </div>
+                        
+            <section class="details">
+
+                {% include 'admin/recipes/fields.njk' %}
+        
+            </section>
+        </form>
+        {% include "admin/recipes/addItems.njk" %}
+        
+        {# <script src="/javascript/script.js"></script> #}
+{% endblock %}
