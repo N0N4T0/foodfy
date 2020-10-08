@@ -650,9 +650,6 @@ input, select {
 }
 
 .card-admin-user .user-action {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    
     margin-top: 15px;
 }
 
@@ -665,4 +662,44 @@ input, select {
 
 .card-admin-user .user-action a + a {
     color: red;
+    margin-left: 30px;
 }
+
+
+/*  */
+.title > div {
+    text-align: right;
+}
+
+.title a {
+    margin-right: 30px;
+    background-color: gray;
+
+    width: 115px;
+
+}
+
+.title button {
+    width: 115px;
+}
+
+.checkbox-admin {
+    width: 150px;
+    
+    display: flex;
+    align-items: center;
+
+    margin-top: 30px;
+}
+
+.checkbox-admin input {
+    box-shadow: none;
+    height: unset;
+}
+
+.checkbox-admin div:last-child {
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: bold;  
+}
+

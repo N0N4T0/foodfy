@@ -4,7 +4,8 @@
         <input 
             type="text" 
             name="name"
-            value="{{user.name}}">
+            value="{{user.name}}"
+            placeholder = "Digite o nome completo">
     </div>
 </div>
 
@@ -14,21 +15,23 @@
         <input 
             type="text" 
             name="name"
-            value="{{user.email}}">
+            value="{{user.email}}"
+            placeholder = "Digite seu e-mail">
     </div>
 </div>
 
-<div class="item">
-    <div>Senha</div>
-    <div>
+<div>
+    <div class="checkbox-admin">
         <input 
-            type="text" 
-            name="name"
-            value="{{user.password}}"
-            placeholder="Digite sua senha"
-            >
+            type="checkbox" 
+            name="is_admin"
+            {% if user.is_admin %}
+            checked="checked"
+            {% endif %}
+        >
+
+        <div>Administrador</div>
     </div>
 </div>
-
 
 

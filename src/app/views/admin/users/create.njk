@@ -5,17 +5,21 @@
 
         <form class="card-recipe" method="POST" action="/admin/recipes" enctype="multipart/form-data">
             <div class="title">
-                <h1>Criando USUÁRIO</h1>
-                <button type="submit">Salvar receita</button>
+                <h1>Criar Usuário</h1>
+                <div>
+                    <a class="button" href="list">
+                        Cancelar
+                    </a>
+                    <button type="submit">Salvar</button>
+                </div>        
             </div>
                         
-            <section class="details">
+            <section class="details user-details">
 
-                {% include 'admin/recipes/fields.njk' %}
+                {% include 'admin/users/fields.njk' %}
         
             </section>
         </form>
-        {% include "admin/recipes/addItems.njk" %}
         
         {# <script src="/javascript/script.js"></script> #}
 {% endblock %}
