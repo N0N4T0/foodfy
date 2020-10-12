@@ -666,7 +666,7 @@ input, select {
 }
 
 
-/*  */
+/* PAGE ADMIN CRIAR USUÁRIO */
 .title > div {
     text-align: right;
 }
@@ -674,13 +674,6 @@ input, select {
 .title a {
     margin-right: 30px;
     background-color: gray;
-
-    width: 115px;
-
-}
-
-.title button {
-    width: 115px;
 }
 
 .checkbox-admin {
@@ -702,4 +695,6 @@ input, select {
     line-height: 19px;
     font-weight: bold;  
 }
+
+
 

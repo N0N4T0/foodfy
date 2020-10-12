@@ -1,0 +1,47 @@
+/* página de login, LOGINFORM */
+.login-form {
+    width: 510px;
+    margin: 20vh auto;
+}
+
+.login-form h2 {
+    text-align: center;
+}
+
+.logo-form-position {
+    justify-content: center;
+}
+
+.menu .logo-form-position a {
+    margin: 0;
+}
+
+.footer-session {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 40px;
+}
+
+.footer-session a {
+    color: #777;
+    
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: bold;
+
+    transition: .2s;
+}
+
+.footer-session a:hover {
+    color: var(--primary-color);
+}
+
+
+
+
+/* FORGOT PASSWORD */
+.recover {
+    justify-content: flex-end;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        {% block head %}
+            <title>Login - Foodfy</title>
+        {% endblock %}
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="/styles/main.css">
+        <link rel="stylesheet" href="/styles/admin.css">
+        <link rel="stylesheet" href="/styles/cards.css">   
+        <link rel="stylesheet" href="/styles/receitas.css">   
+        <link rel="stylesheet" href="/styles/form.css">    
+    </head>
+
+    <body>
+        <header>
+            <div class="menu">
+                <div class="menu_width logo-form-position">
+                    <a href="/">
+                        <img src="/assets/logo.png" alt="imagem de Foodfy">
+                    </a>           
+                </div>
+            </div>    
+        </header>
+
+        {% block content %} {% endblock %}
+
+        <footer>
+            <h3>Todos direitos reservados, receitas Foody</h3>
+        </footer>
+
+    </body>
+</html>
