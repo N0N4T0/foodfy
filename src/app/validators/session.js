@@ -1,6 +1,6 @@
-// const User = require('../models/User')
+const User = require('../models/User')
 
-// module.exports = {
+module.exports = {
 //     async login(req, res, next) {
 //         try {
 //             const { email, password } = req.body
@@ -25,26 +25,26 @@
 //             console.error(error)
 //         }
 //     },
-//     async forgot(req, res, next) {
-//         try {
-//             const { email } = req.body
+    async forgot(req, res, next) {
+        try {
+            const { email } = req.body
 
-//             const user = await User.findOne({
-//                 where: { email }
-//             })
+            const user = await User.findOne({
+                where: { email }
+            })
 
-//             if (!user) return res.render('session/forgot-password.njk', {
-//                 user: req.body,
-//                 error: 'Email não cadastrado!'
-//             })
+            if (!user) return res.render('session/forgot-password.njk', {
+                user: req.body,
+                error: 'Email não cadastrado!'
+            })
 
-//             req.user = user
+            req.user = user
 
-//             next()
-//         } catch (error) {
-//             console.error(error)
-//         }
-//     },
+            next()
+        } catch (error) {
+            console.error(error)
+        }
+    },
 //     async reset(req, res, next) {
 //         try {
 //             const { email, password, passwordRepeat, token } = req.body
@@ -92,4 +92,4 @@
 //             })
 //         }
 //     }
-// }
+}

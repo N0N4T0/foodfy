@@ -6,6 +6,9 @@ const userController = require("../app/controllers/userController")
 const SessionController = require("../app/controllers/sessionController")
 
 
+const UserValidator = require("../app/validators/user")
+const SessionValidator = require("../app/validators/session")
+
 // // // Login/Logout
 // routes.get('/login', isLoggedRedirectToUsers, SessionController.loginForm)
 // routes.post('/login', SessionValidator.login, SessionController.login)
@@ -17,6 +20,8 @@ routes.get('/login', SessionController.loginForm)
 // // // reset password / forgot
 routes.get('/forgot-password', SessionController.forgotForm)
 routes.get('/password-reset', SessionController.resetForm)
+
+//testing
 // routes.post('/forgot-password', SessionValidator.forgot, SessionController.forgot)
 // routes.post('/password-reset', SessionValidator.reset, SessionController.reset)
 
@@ -29,7 +34,7 @@ routes.get('/admin/profile', profileController.index) // Mostrar o formulário c
 // // Rotas que o administrador irá acessar para gerenciar usuários
 routes.get('/admin/list', userController.list) //Mostrar a lista de usuários cadastrados
 routes.get('/admin/create', userController.create) //Exibe formulário para cadastrar novo usuário
-// routes.post('/admin/users', userController.post) //Cadastrar um usuário
+routes.post('/admin/users', userController.post) //Cadastrar um usuário
 // routes.put('/admin/users', userController.put) // Editar um usuário
 // routes.delete('/admin/users', userController.delete) // Deletar um usuário
 
