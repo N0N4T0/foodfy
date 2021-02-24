@@ -1,63 +1,81 @@
-const { hash } = require("bcryptjs")
-const crypto = require("crypto")
-
-const mailer = require('../../lib/mailer')
-
-const User = require('../models/User')
+const User = require("../models/User");
 
 module.exports = {
-    list(req, res){
-        return res.render('admin/users/profile-list')
+    registerForm(req, res) {
+        return res.render("user/create", { session: req.session});
     },
 
-    create(req, res){
-       return res.render('admin/users/create')
-    // return res.send('Rota de exibição') 
+    async post(req, res) {
+        const userId = await User.create(req.body);
+
+        let results = await User.all();
+        const users = results.rows;
+
+        results = await User.isAdmin(req.session.userId);
+        const sessionIsAdmin = results.rows[0];
+
+        return res.render("user/list", {
+            success: "Usuário cadastrado com sucesso",
+            users,
+            session: req.session,
+            sessionIsAdmin
+        });
     },
 
-    async post(req, res){
-        try {
-            const { name, email, is_admin } = req.body
+    async list(req, res) {
+        let results = await User.all();
+        const users = results.rows;
 
-            const password = crypto.randomBytes(10).toString("hex")
-            const encryptedPassword = await hash(password, 8)
+        results = await User.isAdmin(req.session.userId);
+        const sessionIsAdmin = results.rows[0];
 
-            const userId = await User.create({
-                name,
-                email,
-                password: encryptedPassword,
-                is_admin
-            })
+        return res.render("user/list", { users, session: req.session, sessionIsAdmin });
+    },
 
-            req.session.userId = userId
+    async delete(req, res) {
 
-            const user = await User.findOne({
-                where: { id: userId }
-            })
+        await User.delete(req.body.id);
+        
+        let results = await User.all();
+        const users = results.rows;
 
-            await mailer.sendMail({
-                from: "admin@foodfy.com.br",
-                to: user.email,
-                subject: "Boas vindas do Foodfy",
-                html:`
-                    <h2>Olá usuário!</h2>
+        results = await User.isAdmin(req.session.userId);
+        const sessionIsAdmin = results.rows[0];
 
-                    <p>Seja bem vindx ao Foodfy, o seu site de receitas!</p><br>
-                    <p>Está é a sua senha temporária. A mesma pode ser alterada em seu perfil.</p>
-                    
-                    <h4>Sua senha: ${password}</h4>
+        return res.render("user/list", {
+            success: "Usuário removido com sucesso",
+            users,
+            session: req.session,
+            sessionIsAdmin
+        });
+    },
 
-                    <p>
-                        <a href="http://localhost:3000/users/login" target="_blank">
-                            Realizar login
-                        <a/>
-                    </p>
-                `
+    async edit(req, res) {
+        let results = await User.find(req.params.id);
+        const user = results.rows[0];
 
-            })
+        results = await User.isAdmin(req.session.userId);
+        const sessionIsAdmin = results.rows[0];
 
-        } catch (err) {
-            console.error(err)
-        }
+        return res.render("user/edit", { user, session: req.session, sessionIsAdmin })
+    },
+
+    async put(req, res) {
+        const keys = Object.keys(req.body);
+
+        await User.update(req.body);
+
+        let results = await User.isAdmin(req.session.userId);
+        const sessionIsAdmin = results.rows[0];
+
+        results = await User.all();
+        const users = results.rows;
+
+        return res.render("user/list", {
+            success: "Usuário atualizado com sucesso",
+            users,
+            session: req.session,
+            sessionIsAdmin
+        });
     }
 }

@@ -1,63 +1,176 @@
-// const { put } = require('../controllers/UsersController')
-// const User = require('../models/User')
+const User = require("../models/User");
 
-// module.exports = {
-//     async post(req, res, next) {
-//         const keys = Object.keys(req.body)
+function checkAllFields(body) {
+    const keys = Object.keys(body);
 
-//         for (key of keys) {
-//             if (req.body[key] == '' && key != 'id') {
-//                 return res.render('admin/users/create.njk', {
-//                     user: req.body,
-//                     error: 'Por favor, preencha todos os campos!'
-//                 })
-//             }
-//         }
+    for (key of keys) {
+        if (body[key] == "") {
+            return {
+                user: body,
+                error: "Preencha todos os campos"
+            };
+        }
+    }
+}
 
-//         const { email } = req.body
+async function show(req, res, next) {
+    let results = await User.all();
+    const users = results.rows;
 
-//         const user = await User.findOne({ where: { email } })
+    results = await User.isAdmin(req.session.userId);
+    const sessionIsAdmin = results.rows[0];
 
-//         if (user) return res.render('admin/users/create.njk', {
-//             user: req.body,
-//             error: 'Usuário já existe!'
-//         })
+    const id = req.params.id;
+    const user = await User.findOne({ where: { id } });
 
-//         next()
-//     },
-//     async show(req, res, next) {
-//         const { id } = req.params
+    if (!user) return res.render("private-access/user/list", {
+        error: "Usuário não encontrado!",
+        users,
+        session: req.session,
+        sessionIsAdmin
+    });
 
-//         const user = await User.findOne({
-//             where: { id }
-//         })
+    req.user = user;
 
-//         if (!user) return res.render('admin/users/show.njk', {
-//             error: 'Usuário não encontrado!'
-//         })
+    next();
+}
 
-//         req.user = user
+async function create(req, res, next) {
 
-//         next()
-//     },
-//     async put(req, res, next) {
-//         const keys = Object.keys(req.body)
+    let results = await User.all();
+    const users = results.rows;
 
-//         for (key of keys) {
-//             if (req.body[key] == '') {
-//                 return res.render('admin/users/edit.njk', {
-//                     user: req.body,
-//                     error: 'Por favor, preencha todos os campos!'
-//                 })
-//             }
-//         }
+    results = await User.isAdmin(req.session.userId);
+    const sessionIsAdmin = results.rows[0].is_admin;
 
-//         const user = await User.findOne({
-//             where: { id: req.body.id }
-//         })
+    if (!sessionIsAdmin) return res.render("private-access/user/list", {
+        error: "Ação permitida apenas para administradores",
+        users,
+        session: req.session,
+        sessionIsAdmin
+    });
 
-//         req.user = user
+    next();
+}
 
-//         next()
-//     },
-// }
+async function edit(req, res, next) {
+
+    const id = req.params.id;
+
+    let results = await User.all();
+    const users = results.rows;
+
+    results = await User.isAdmin(req.session.userId);
+    const sessionIsAdmin = results.rows[0].is_admin;
+
+    if (!sessionIsAdmin && id != req.session.userId) return res.render("private-access/user/list", {
+        error: "Ação permitida apenas para administradores",
+        users,
+        session: req.session,
+        sessionIsAdmin
+    });
+
+    next();
+}
+
+async function put(req, res, next) {
+
+    const id = req.body.id;
+
+    let results = await User.all();
+    const users = results.rows;
+
+    results = await User.isAdmin(req.session.userId);
+    const sessionIsAdmin = results.rows[0].is_admin;
+
+    if (!sessionIsAdmin && id != req.session.userId) return res.render("private-access/user/list", {
+        error: "Ação permitida apenas para administradores",
+        users,
+        session: req.session,
+        sessionIsAdmin
+    });
+
+    next();
+}
+
+async function deleteValidator(req, res, next) {
+
+    const id = req.body.id;
+
+    let results = await User.all();
+    const users = results.rows;
+
+    results = await User.isAdmin(req.session.userId);
+    const sessionIsAdmin = results.rows[0].is_admin;
+
+    if (!sessionIsAdmin) return res.render("private-access/user/list", {
+        error: "Ação permitida apenas para administradores",
+        users,
+        session: req.session,
+        sessionIsAdmin
+    });
+
+    if (id == req.session.userId) return res.render("private-access/user/list", {
+        error: "Ação inválida",
+        users,
+        session: req.session,
+        sessionIsAdmin
+    });
+
+    next();
+}
+
+async function post(req, res, next) {
+    const fillAllFields = checkAllFields(req.body);
+
+    if(fillAllFields) {
+        return res.render("private-access/user/create", fillAllFields);
+    }
+
+    let { email } = req.body;
+
+    const user = await User.findOne({
+        where: { email }
+    });
+
+    if (user) {
+        return res.render("private-access/user/create", {
+            user: req.body,
+            error: "Usuário já cadastrado"
+        });
+    }
+
+    next();
+}
+
+async function update(req, res, next) {
+    const keys = Object.keys(req.body);
+
+    for (key of keys) {
+        if (req.body[key] == "") {
+            return res.render("private-access/user/edit", {
+                user: req.body,
+                session: req.session,
+                error: "Preencha todos os campos"
+            });
+        }
+    }
+
+    const { id } = req.body;
+
+    const user = await User.findOne({where: {id}});
+
+    req.user = user;
+
+    next();
+}
+
+module.exports = {
+    post,
+    show,
+    update,
+    create,
+    edit,
+    put,
+    deleteValidator
+}

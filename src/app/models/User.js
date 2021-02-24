@@ -19,6 +19,16 @@ module.exports = {
         }
     },
 
+    isAdmin(id){
+        try {
+            const query = `SELECT is_admin FROM users WHERE id = $1`
+            
+            return db.query(query, [id])
+        } catch (error) {
+            console.error(error)
+        }
+    },
+
     //retorna o usuário logado
     async userLogged(id){      
         try {

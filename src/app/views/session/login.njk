@@ -11,11 +11,30 @@
 
         </section>
 
+
+
+
         <div class="footer-session">
+            {% if session.userId %}
+
+                <form action="/admin/users/logout" method="POST">
+                    <button class="button">Sair</button>
+                </form>
+
+            {% else %}
+
+                <a href="/admin/users/login" method="POST">Acessar</a>
+
+            {% endif %}
+        </div>
+
+
+
+        {# <div class="footer-session">
             <a href="/users/forgot-password">Perdeu a senha?</a>
 
             <button class="button" type="submit">Acessar</button>
-        </div>
+        </div> #}
 
     </form>
     
