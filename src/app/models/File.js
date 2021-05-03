@@ -1,66 +1,77 @@
-const db = require("../../config/db")
-const fs = require('fs')
+const db = require("../../config/db");
 
 module.exports = {
-    create(data){
-        const query = `
-        INSERT INTO files (
-            name, 
-            path
-        ) VALUES ($1, $2) 
-            RETURNING id
-        `
-        
-        const values = [
-            data.filename,
-            data.path
-        ]
-
-        return db.query(query, values)
+    async create({ filename, path, recipe_id }) {
+        try {
+            let query = `
+                INSERT INTO files (
+                    name,
+                    path
+                ) VALUES ($1, $2)
+                RETURNING id
+            `;
+    
+            let values = [
+                filename,
+                path
+            ];
+    
+            const results = await db.query(query, values);
+            const fileId = results.rows[0].id;
+    
+            query = `
+                INSERT INTO recipes_files (
+                    recipe_id,
+                    file_id
+                ) VALUES ($1, $2)
+                RETURNING id
+            `;
+    
+            values = [
+                recipe_id,
+                fileId
+            ];
+    
+            return db.query(query, values);
+        } catch (error) {
+            console.error(error);
+        }
     },
 
-    async createRecipeFiles(data){
-        const query = `
-        INSERT INTO files (
-            name, 
-            path
-        ) VALUES ($1, $2)
-            RETURNING id`
-        
-        const values = [
-            data.filename,
-            data.path
-        ]
-        
-        const results = await db.query(query, values)
-
-        const recipeFilesQuery = `
-        INSERT INTO recipe_files (
-            recipe_id,
-            file_id
-        ) VALUES ($1, $2) 
-            RETURNING id
-        `
-        
-        const recipeFilesValues = [
-            data.recipe_id,
-            results.rows[0].id
-        ]
-
-        return db.query(recipeFilesQuery, recipeFilesValues)
+    async createChefFile ({ filename, path }) {
+        try {
+            let query = `
+                INSERT INTO files (
+                    name,
+                    path
+                ) VALUES ($1, $2)
+                RETURNING id
+            `;
+    
+            let values = [
+                filename,
+                path
+            ];
+    
+            return db.query(query, values);
+        } catch (error) {
+            console.error(error);
+        }
     },
 
-    find(id) {
-        return db.query(`SELECT * FROM files WHERE id = $1`, [id])
-    },
+    async delete(id) {
+        try {
+            let result = await db.query(`SELECT * FROM files WHERE id = $1`, [id]);
+            const file = result.rows[0];
 
-    async delete(id){
-        const results = await db.query(`SELECT * FROM files WHERE id = $1`, [id])
-        const file = results.rows[0]
-        fs.unlinkSync(file.path)
+            result = await db.query(`SELECT * FROM recipes_files WHERE recipes_files.file_id = $1`, [id]);
+            const recipes_files = result.rows[0];
 
-        await db.query(`DELETE FROM recipe_files WHERE file_id = $1`, [id])
-
-        return db.query(`DELETE FROM files WHERE id = $1`, [id])
+            await db.query(`DELETE FROM recipes_files WHERE recipes_files.file_id = $1`, [id]);
+    
+            return db.query(`DELETE FROM files WHERE id = $1`, [id]);
+        } catch (err) {
+            console.error(err);
+        }
     }
 }

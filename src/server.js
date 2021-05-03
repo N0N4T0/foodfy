@@ -3,10 +3,12 @@ const nunjucks = require('nunjucks')
 const routes = require("./routes")
 const methodOverride = require('method-override')
 const { urlencoded } = require('express')
+const session = require("./config/session")
 
 const server = express()
 
-server.use(urlencoded({ extended: true }))
+server.use(session)
+server.use(urlencoded({ extended: true })) //para usar o req.body
 server.use(express.static('public'))
 server.use(methodOverride('_method'))
 server.use(routes)

@@ -23,7 +23,7 @@ async function show(req, res, next) {
     const id = req.params.id;
     const user = await User.findOne({ where: { id } });
 
-    if (!user) return res.render("private-access/user/list", {
+    if (!user) return res.render("admin-access/user/list", {
         error: "Usuário não encontrado!",
         users,
         session: req.session,
@@ -43,7 +43,7 @@ async function create(req, res, next) {
     results = await User.isAdmin(req.session.userId);
     const sessionIsAdmin = results.rows[0].is_admin;
 
-    if (!sessionIsAdmin) return res.render("private-access/user/list", {
+    if (!sessionIsAdmin) return res.render("admin-access/user/list", {
         error: "Ação permitida apenas para administradores",
         users,
         session: req.session,
@@ -63,7 +63,7 @@ async function edit(req, res, next) {
     results = await User.isAdmin(req.session.userId);
     const sessionIsAdmin = results.rows[0].is_admin;
 
-    if (!sessionIsAdmin && id != req.session.userId) return res.render("private-access/user/list", {
+    if (!sessionIsAdmin && id != req.session.userId) return res.render("admin-access/user/list", {
         error: "Ação permitida apenas para administradores",
         users,
         session: req.session,
@@ -83,7 +83,7 @@ async function put(req, res, next) {
     results = await User.isAdmin(req.session.userId);
     const sessionIsAdmin = results.rows[0].is_admin;
 
-    if (!sessionIsAdmin && id != req.session.userId) return res.render("private-access/user/list", {
+    if (!sessionIsAdmin && id != req.session.userId) return res.render("admin-access/user/list", {
         error: "Ação permitida apenas para administradores",
         users,
         session: req.session,
@@ -103,14 +103,14 @@ async function deleteValidator(req, res, next) {
     results = await User.isAdmin(req.session.userId);
     const sessionIsAdmin = results.rows[0].is_admin;
 
-    if (!sessionIsAdmin) return res.render("private-access/user/list", {
+    if (!sessionIsAdmin) return res.render("admin-access/user/list", {
         error: "Ação permitida apenas para administradores",
         users,
         session: req.session,
         sessionIsAdmin
     });
 
-    if (id == req.session.userId) return res.render("private-access/user/list", {
+    if (id == req.session.userId) return res.render("admin-access/user/list", {
         error: "Ação inválida",
         users,
         session: req.session,
@@ -124,7 +124,7 @@ async function post(req, res, next) {
     const fillAllFields = checkAllFields(req.body);
 
     if(fillAllFields) {
-        return res.render("private-access/user/create", fillAllFields);
+        return res.render("admin-access/user/create", fillAllFields);
     }
 
     let { email } = req.body;
@@ -134,7 +134,7 @@ async function post(req, res, next) {
     });
 
     if (user) {
-        return res.render("private-access/user/create", {
+        return res.render("admin-access/user/create", {
             user: req.body,
             error: "Usuário já cadastrado"
         });
@@ -148,7 +148,7 @@ async function update(req, res, next) {
 
     for (key of keys) {
         if (req.body[key] == "") {
-            return res.render("private-access/user/edit", {
+            return res.render("admin-access/user/edit", {
                 user: req.body,
                 session: req.session,
                 error: "Preencha todos os campos"

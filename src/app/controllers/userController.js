@@ -2,7 +2,7 @@ const User = require("../models/User");
 
 module.exports = {
     registerForm(req, res) {
-        return res.render("user/create", { session: req.session});
+        return res.render("admin-access/user/create", { session: req.session});
     },
 
     async post(req, res) {
@@ -14,7 +14,7 @@ module.exports = {
         results = await User.isAdmin(req.session.userId);
         const sessionIsAdmin = results.rows[0];
 
-        return res.render("user/list", {
+        return res.render("admin-access/user/list", {
             success: "Usuário cadastrado com sucesso",
             users,
             session: req.session,
@@ -29,7 +29,7 @@ module.exports = {
         results = await User.isAdmin(req.session.userId);
         const sessionIsAdmin = results.rows[0];
 
-        return res.render("user/list", { users, session: req.session, sessionIsAdmin });
+        return res.render("admin-access/user/list", { users, session: req.session, sessionIsAdmin });
     },
 
     async delete(req, res) {
@@ -42,7 +42,7 @@ module.exports = {
         results = await User.isAdmin(req.session.userId);
         const sessionIsAdmin = results.rows[0];
 
-        return res.render("user/list", {
+        return res.render("admin-access/user/list", {
             success: "Usuário removido com sucesso",
             users,
             session: req.session,
@@ -57,7 +57,7 @@ module.exports = {
         results = await User.isAdmin(req.session.userId);
         const sessionIsAdmin = results.rows[0];
 
-        return res.render("user/edit", { user, session: req.session, sessionIsAdmin })
+        return res.render("admin-access/user/edit", { user, session: req.session, sessionIsAdmin })
     },
 
     async put(req, res) {
@@ -71,7 +71,7 @@ module.exports = {
         results = await User.all();
         const users = results.rows;
 
-        return res.render("user/list", {
+        return res.render("admin-access/user/list", {
             success: "Usuário atualizado com sucesso",
             users,
             session: req.session,

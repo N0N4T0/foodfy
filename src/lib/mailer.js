@@ -7,7 +7,6 @@ const transport = nodemailer.createTransport({
         user: "746d74c0a1e9b4",
         pass: "e8ad98395a606a"
     }
-});
-
+})
 
 module.exports = transport

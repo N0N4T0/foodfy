@@ -6,7 +6,7 @@ module.exports = session({
     store: new pgSession({
         pool: db
     }),
-    secret: 'iabadabaduuuu',
+    secret: 'legends',
     resave: false,
     saveUninitialized: false,
     cookie: {

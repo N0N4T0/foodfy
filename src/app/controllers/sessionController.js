@@ -5,7 +5,7 @@ const { hash } = require("bcryptjs");
 
 module.exports = {
   loginForm(req, res) {
-    return res.render("session/login");
+    return res.render("admin-access/session/login");
   },
 
   login(req, res) {
@@ -21,7 +21,7 @@ module.exports = {
   },
 
   forgotPasswordForm(req, res) {
-    return res.render("session/forgot-password");
+    return res.render("admin-access/session/forgot-password");
   },
 
   async forgotPassword(req, res) {
@@ -39,38 +39,35 @@ module.exports = {
       });
 
       await mailer.sendMail({
-        from: "admin@foodfy.com.br",
         to: user.email,
-        subject: "Boas vindas do Foodfy",
-        html:`
-            <h2>Olá usuário!</h2>
-            <p>Seja bem vindx ao Foodfy, o seu site de receitas!</p><br>
-            <p>A sua senha pode ser alterada em seu perfil.</p>
-            
+        from: "no-reply@foody.com.br",
+        subject: "Recuperação de senha",
+        html: `<h2>Esqueceu a senha?</h2>
+            <p>Não se preocupe, clique no link abaixo para recuperá-la.</p>
             <p>
-                <a href="http://localhost:3000/admin/users/reset-password?token=${token}" target="_blank">
+                <a href="http://localhost:3000/admin/users/change-password?token=${token}" target="_blank">
                     RECUPERAR SENHA
                 </a>
             </p>
-        `
+            `,
       });
 
-      return res.render("session/forgot-password", {
+      return res.render("admin-access/session/forgot-password", {
         success: "Verifique seu email para resetar sua senha!",
       });
     } catch (error) {
       console.error(error);
-      return res.render("session/forgot-password", {
+      return res.render("admin-access/session/forgot-password", {
         error: "Erro inesperado, tente novamente!",
       });
     }
   },
 
-  resetPasswordForm(req, res) {
-    return res.render("session/reset-password", { token: req.query.token });
+  changePasswordForm(req, res) {
+    return res.render("admin-access/session/change-password", { token: req.query.token });
   },
 
-  async resetPassword(req, res) {
+  async changePassword(req, res) {
     const user = req.user;
     const { password, token } = req.body;
 
@@ -83,7 +80,7 @@ module.exports = {
           reset_token_expires: "",
       });
 
-      return res.render("session/login", {
+      return res.render("admin-access/session/login", {
           user: req.body,
           success: "Senha alterada com sucesso! Faça o seu login."
       });
@@ -92,7 +89,7 @@ module.exports = {
 
       console.error(error);
 
-      return res.render("session/reset-password", {
+      return res.render("admin-access/session/change-password", {
         user: req.body,
         token,
         error: "Erro inesperado, tente novamente!",
