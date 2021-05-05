@@ -1,136 +1,24 @@
-const AvatarPhotoUpload = {
-    input: "",
-    preview: document.querySelector('#avatar-photo-preview'), 
-    uploadLimit: 1,
-    files: [],
-    handleFileInput(event) {
-        const {files: fileList} = event.target
-        AvatarPhotoUpload.input = event.target
-
-        if (AvatarPhotoUpload.hasLimit(event)) return
-
-        Array.from(fileList).forEach(file => {
-            AvatarPhotoUpload.files.push(file)
-            
-            const reader = new FileReader()
-
-            reader.onload = () => {
-                const image = new Image() // cria tag html <img>
-                image.src = String(reader.result)
-
-                const div = AvatarPhotoUpload.getContainer(image)
-
-                AvatarPhotoUpload.preview.appendChild(div)
-            }
-
-            reader.readAsDataURL(file)
-        })
-        
-        AvatarPhotoUpload.input.files = AvatarPhotoUpload.getAllFiles()
-    },
-
-    hasLimit(event){
-        const { uploadLimit, input, preview } = AvatarPhotoUpload
-        const { files: fileList } = input    
-
-        if (fileList.length > uploadLimit) {
-            alert(`Envie no máximo ${uploadLimit} foto`)
-            event.preventDefault()
-
-            return true
-        }
-
-        const photosDiv = []
-        preview.childNodes.forEach(item => {
-            if (item.classList && item.classList.value == "photo")
-                photosDiv.push(item)
-        })
-
-        const totalPhotos = fileList.length + photosDiv.length
-        if (totalPhotos > uploadLimit) {
-            alert("Você atingiu o limite máximo de fotos.")
-            event.preventDefault()
-
-            return true
-        }
-
-        return false
-    },
-
-    getAllFiles() {
-        const dataTransfer = new ClipboardEvent("").clipboardData || new DataTransfer()
-
-        AvatarPhotoUpload.files.forEach(file => dataTransfer.items.add(file))
-
-        // console.log(dataTransfer)
-        return dataTransfer.files
-    },
-    
-    getContainer(image) {
-        const div = document.createElement('div')
-        div.classList.add('photo')
-
-        div.onclick = AvatarPhotoUpload.removePhoto
-
-        div.appendChild(image) //colocando image dentro da div
-
-        div.appendChild(AvatarPhotoUpload.getRemoveButton())
-
-        return div
-    },
-
-    getRemoveButton() {
-        const button = document.createElement('i')
-
-        button.classList.add('material-icons')
-        button.innerHTML = "close"
-
-        return button
-    },
-
-    removePhoto(event) {
-        const photoDiv = event.target.parentNode // i @ <div class="photo">
-        const photosArray = Array.from(AvatarPhotoUpload.preview.children)
-        const index = photosArray.indexOf(photoDiv)
-
-        AvatarPhotoUpload.files.splice(index, 1)
-        AvatarPhotoUpload.input.files = AvatarPhotoUpload.getAllFiles()
-
-        photoDiv.remove()
-    },
-
-    removeOldPhoto(event) {
-        const photoDiv = event.target.parentNode
-
-        if (photoDiv.id) {
-            const removedFiles = document.querySelector('input[name="removed_files"')
-            if (removedFiles) {
-                removedFiles.value += `${photoDiv.id},`
-            }
-        }
-
-        photoDiv.remove()
-    }
-}
-
 const PhotosUpload = {
     input: "",
-    preview: document.querySelector('#photos-preview'), 
-    uploadLimit: 5,
+    preview: document.querySelector("#photos-preview"),
+    uploadLimit: uploadLimit,
     files: [],
+    // placeholderChefEdit: document.querySelector("#chef-edit-placeholder"),
+
     handleFileInput(event) {
-        const {files: fileList} = event.target
+        const { files: fileList } = event.target
         PhotosUpload.input = event.target
 
         if (PhotosUpload.hasLimit(event)) return
 
         Array.from(fileList).forEach(file => {
+
             PhotosUpload.files.push(file)
-            
+
             const reader = new FileReader()
 
             reader.onload = () => {
-                const image = new Image() // cria tag html <img>
+                const image = new Image();
                 image.src = String(reader.result)
 
                 const div = PhotosUpload.getContainer(image)
@@ -140,36 +28,36 @@ const PhotosUpload = {
 
             reader.readAsDataURL(file)
         })
-        
+
+
         PhotosUpload.input.files = PhotosUpload.getAllFiles()
     },
 
-    hasLimit(event){
+    hasLimit(event) {
         const { uploadLimit, input, preview } = PhotosUpload
-        const { files: fileList } = input    
+        const { files: fileList } = input
 
         if (fileList.length > uploadLimit) {
-            alert(`Envie no máximo ${uploadLimit} fotos`)
+            alert(`Envie no máximo ${uploadLimit} fotos!`)
             event.preventDefault()
-
             return true
         }
 
-        const photosDiv = []
+        const photosDiv = [];
         preview.childNodes.forEach(item => {
-            if (item.classList && item.classList.value == "photo")
+            if (item.classList && item.classList.value == "photo") {
                 photosDiv.push(item)
-        })
+            }
+        });
 
         const totalPhotos = fileList.length + photosDiv.length
         if (totalPhotos > uploadLimit) {
-            alert("Você atingiu o limite máximo de fotos.")
+            alert("Você atingiu o limite máximo de fotos!")
             event.preventDefault()
-
             return true
         }
 
-        return false
+        return false;
     },
 
     getAllFiles() {
@@ -177,30 +65,28 @@ const PhotosUpload = {
 
         PhotosUpload.files.forEach(file => dataTransfer.items.add(file))
 
-        // console.log(dataTransfer)
         return dataTransfer.files
     },
-    
-    getContainer(image) {
-        const div = document.createElement('div')
-        div.classList.add('photo')
 
-        div.onclick = PhotosUpload.removePhoto
+    getContainer(image) {
+        const div = document.createElement("div");
+        div.classList.add("photo")
+
+        div.onclick = PhotosUpload.removePhoto;
 
         div.appendChild(image) //colocando image dentro da div
 
         div.appendChild(PhotosUpload.getRemoveButton())
 
-        return div
+        return div;
     },
 
     getRemoveButton() {
-        const button = document.createElement('i')
-
-        button.classList.add('material-icons')
+        const button = document.createElement("i")
+        button.classList.add("material-icons")
         button.innerHTML = "close"
 
-        return button
+        return button;
     },
 
     removePhoto(event) {
@@ -217,16 +103,18 @@ const PhotosUpload = {
     removeOldPhoto(event) {
         const photoDiv = event.target.parentNode
 
-        if (photoDiv.id) {
-            const removedFiles = document.querySelector('input[name="removed_files"')
-            if (removedFiles) {
+        if(photoDiv.id) {
+            const removedFiles = document.querySelector("input[name='removed_files']")
+            if(removedFiles) {
                 removedFiles.value += `${photoDiv.id},`
             }
         }
 
-        photoDiv.remove()
+        photoDiv.remove();
+
     }
 }
+
 
 const ImageGallery = {
     highlight: document.querySelector('.gallery .highlight > img'),

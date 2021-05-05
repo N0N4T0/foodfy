@@ -7,7 +7,7 @@ const publicSection = require("./publicSection")
 
 //rotas
 routes.use("/", publicSection)
-routes.use("/adimn", adminSection)
+routes.use("/admin", adminSection)
 
 routes.get("/admin", function(req, res){
     return res.redirect("/admin/users/login")

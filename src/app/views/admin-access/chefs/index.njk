@@ -19,7 +19,7 @@
             {% for chef in chefs %}
             <div class="chefsPosition">
                 <div>
-                    <img src="{{chef.avatar if chef.avatar else '//placehold.it/500x500?text=Sem Avatar'}}" alt="Foto do Chef">
+                    <img src="{{chef.image if chef.image else '//placehold.it/500x500?text=Sem Imagem'}}" alt="Foto do Chef">
                 </div>
                 <div class="chefsText">
                     <h1>{{chef.name}}</h1>

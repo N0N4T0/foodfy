@@ -15,10 +15,10 @@
         </div>
         
         <div class="chefPosition">
-           {% if not avatar[0] %}
-                <img src="http://placehold.it/500x500?text=Chef Sem Avatar" alt="">
+           {% if not image[0] %}
+                <img src="http://placehold.it/500x500?text=Chef Sem Imagem" alt="">
             {% else %}
-                <img src="{{avatar[0].src}}" alt="Foto do Chef">
+                <img src="{{image[0].src}}" alt="Foto do Chef">
             {% endif %}
             <h1>{{chef.name}}</h1>
             <h3>{{chef.total_recipes}} receitas</h3>

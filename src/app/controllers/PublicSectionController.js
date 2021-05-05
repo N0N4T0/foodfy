@@ -117,7 +117,7 @@ module.exports = {
             }
         }
 
-        return res.render("public-access/chef/chef", { chefs });
+        return res.render("public-access/chefs", { chefs });
     }
 }
 

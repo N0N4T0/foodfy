@@ -22,19 +22,15 @@
                 </form>
 
             {% else %}
+                
+                <form action="/admin/users/login" method="post">
+                    <a href="/admin/users/forgot-password">Perdeu a senha?</a>
 
-                <a href="/admin/users/login" method="POST">Acessar</a>
+                    <button class="button" type="submit">Acessar</button>
+                </form>
 
             {% endif %}
         </div>
-
-
-
-        {# <div class="footer-session">
-            <a href="/users/forgot-password">Perdeu a senha?</a>
-
-            <button class="button" type="submit">Acessar</button>
-        </div> #}
 
     </form>
     

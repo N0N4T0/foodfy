@@ -2,9 +2,9 @@ const faker = require("faker");
 const { hash } = require("bcryptjs");
 
 const User = require("./src/app/models/User");
-const Chef = require("./src/app/models/ChefsAdm");
+const Chef = require("./src/app/models/Chef");
 const File = require("./src/app/models/File");
-const Recipe = require("./src/app/models/Recipes");
+const Recipe = require("./src/app/models/Recipe");
 
 let usersIds = [];
 let chefsIds = [];
@@ -27,11 +27,11 @@ async function createUsers() {
             name: faker.name.findName(),
             email: faker.internet.email(),
             password, 
-            isAdmin: faker.random.boolean(),
-        });
+            isAdmin: faker.datatype.boolean(),
+       });
     }
 
-    const usersPromise = users.map(user => User.post(user));
+    const usersPromise = users.map(user => User.create(user));
 
     usersIds = await Promise.all(usersPromise);
 }
@@ -47,7 +47,7 @@ async function createChefs() {
             path: `public/images/placeholder.png`,
         });
         
-        const filesPromises = files.map(file => File.createRecipeFiles(file));
+        const filesPromises = files.map(file => File.createChefFile(file));
         let results = await filesPromises[0];
         const fileId = results.rows[0].id;
 
