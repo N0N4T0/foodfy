@@ -1,7 +1,7 @@
 const PhotosUpload = {
     input: "",
     preview: document.querySelector("#photos-preview"),
-    uploadLimit: uploadLimit,
+    uploadLimit: 5,
     files: [],
     // placeholderChefEdit: document.querySelector("#chef-edit-placeholder"),
 

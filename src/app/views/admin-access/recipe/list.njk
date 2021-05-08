@@ -5,7 +5,7 @@
         <div class="title">
             <h1>Gerenciar receita</h1>
             <a class="button"
-               href="/admin/recipes/create">
+               href="/admin-access/recipe/create">
                Nova receita
             </a>
         </div>
@@ -23,7 +23,7 @@
                 <div class="card-admin-text">
                     <h2>{{recipe.title}}</h2>
                     <h3>por {{recipe.chef_name}}</h3>
-                    <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
+                    <a href="/admin-access/recipe/{{recipe.id}}">Visualizar</a>
                 </div>
             </div>
             {% endfor %}

@@ -3,7 +3,7 @@
 
 {% block content %}
 
-        <form class="card-recipe" method="POST" action="/admin/recipes" enctype="multipart/form-data">
+        <form class="card-recipe" method="POST" action="/admin-access/recipe" enctype="multipart/form-data">
             <div class="title">
                 <h1>Criando receita</h1>
                 <button type="submit">Salvar receita</button>
@@ -11,11 +11,11 @@
                         
             <section class="details">
 
-                {% include 'admin/recipes/fields.njk' %}
+                {% include 'admin-access/recipe/fields.njk' %}
         
             </section>
         </form>
-        {% include "admin/recipes/addItems.njk" %}
+        {% include "admin-access/recipe/addItems.njk" %}
         
         {# <script src="/javascript/script.js"></script> #}
 {% endblock %}

@@ -5,7 +5,7 @@
 
         <form 
             class="card-recipe" 
-            action="/admin/recipes/{{recipe.index}}?_method=put"
+            action="/admin-access/recipe/{{recipe.index}}?_method=put"
             method="POST"
             enctype="multipart/form-data"
             >
@@ -18,19 +18,19 @@
                         
             <section class="details">
 
-                {% include 'admin/recipes/fields.njk' %}
+                {% include 'admin-access/recipe/fields.njk' %}
         
             </section>
 
             <input type="hidden" name="id" value={{recipe.id}}>
         </form>
         
-        <form id="form-delete" action="/admin/recipes/{{recipe.index}}?_method=delete" method="post">
+        <form id="form-delete" action="/admin-access/recipe/{{recipe.index}}?_method=delete" method="post">
             <input type="hidden" name="id" value={{recipe.id}}>
         </form>
 
-        {% include "admin/confirm.njk" %}
+        {% include "admin-access/confirm.njk" %}
 
 
-    {% include "admin/recipes/addItems.njk" %}
+    {% include "admin-access/recipe/addItems.njk" %}
 {% endblock %}
