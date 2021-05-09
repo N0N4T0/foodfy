@@ -3,34 +3,33 @@
 
 {% block content %}
 
-        <form 
-            class="card-recipe" 
-            action="/admin-access/recipe/{{recipe.index}}?_method=put"
-            method="POST"
-            enctype="multipart/form-data"
-            >
-            
-            <div class="edit-title">
-                <h1>Editar receita</h1>
-                <button class="button-delete" type="submit" form="form-delete">Deletar</button>
-                <button type="submit">Salvar receita</button>
-            </div>
-                        
-            <section class="details">
+    <form 
+        class="card-recipe" 
+        action="/admin/recipes?_method=PUT" 
+        method="POST" 
+        enctype="multipart/form-data">
 
-                {% include 'admin-access/recipe/fields.njk' %}
-        
-            </section>
+        <div class="edit-title">
+            <h1>Editar receita</h1>
+            <button id="button-delete" type="submit" form="form-delete">Deletar</button>
+            <button type="submit">Salvar receita</button>
+        </div>
 
-            <input type="hidden" name="id" value={{recipe.id}}>
-        </form>
-        
-        <form id="form-delete" action="/admin-access/recipe/{{recipe.index}}?_method=delete" method="post">
-            <input type="hidden" name="id" value={{recipe.id}}>
-        </form>
+        <section class="details">
 
-        {% include "admin-access/confirm.njk" %}
+            {% include 'admin-access/recipe/fields.njk'%}
 
+            <input type="hidden" name="id" value="{{recipe.id}}">
+        </section>
+
+    </form>
+
+    <form id="form-delete" action="/admin/recipes?_method=DELETE" method="POST">
+        <input type="hidden" name="id" value="{{recipe.id}}">
+    </form>
+
+    {% include "admin-access/confirm.njk"%}
 
     {% include "admin-access/recipe/addItems.njk" %}
-{% endblock %}
+
+{% endblock content %}

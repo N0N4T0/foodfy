@@ -3,34 +3,26 @@
 {% block content %}
     <main>
         <div class="title">
-            <h1>Gerenciar receita</h1>
-            <a class="button"
-               href="/admin-access/recipe/create">
-               Nova receita
-            </a>
+            <h2>Gerenciar receitas</h2>
+
+            <a class="button" href="/admin/recipes/create">Nova receita</a>
         </div>
 
         <div class="cards-admin">
-            
             {% for recipe in recipes %}
-            <div class="card-admin" name="{{recipe.title}}">
-                <div class="card-admin-img">                    
-                    <img 
-                        src="{{recipe.image if recipe.image else '//placehold.it/500x500?text=Receita Sem Foto'}}"
-                        alt="{{recipe.title}}"
-                    >
+                <div class="card-admin" id="{{recipes.indexOf(recipe)}}">
+                    <div class="card-admin-img">
+                        <img src="{{recipe.image}}" alt="">
+                    </div>
+                    <div class="card-admin-text">
+                        <h2>{{recipe.title}}</h2>
+                        <h3>por{{recipe.chef_name}}</h3>
+
+                        <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
+                    </div>
+
                 </div>
-                <div class="card-admin-text">
-                    <h2>{{recipe.title}}</h2>
-                    <h3>por {{recipe.chef_name}}</h3>
-                    <a href="/admin-access/recipe/{{recipe.id}}">Visualizar</a>
-                </div>
-            </div>
             {% endfor %}
-           
         </div>
-
-        {% block pagination%} {% include "parts/pagination.njk" %} {% endblock %}
-
     </main>
-{% endblock %}
+{% endblock content %}

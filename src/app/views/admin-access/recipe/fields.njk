@@ -15,9 +15,9 @@
         
         <div id="photos-preview">
             {% if files %}
-                {% for photo in files %}
-                    <div class="photo" id="{{photo.id}}">
-                        <img src="{{photo.src}}" alt="{{photo.name}}">
+                {% for image in files %}
+                    <div class="photo" id="{{image.id}}">
+                        <img src="{{image.src}}" alt="{{image.name}}">
                         <i class="material-icons"
                             onclick="PhotosUpload.removeOldPhoto(event)"
                         >
@@ -25,7 +25,9 @@
                         </i>
                     </div>
                 {% endfor %}
+
                 <input type="hidden" name="removed_files">
+                
             {% endif %}
         </div>
     </div>
@@ -76,7 +78,7 @@
         </div>
     {% endfor %}
 </div>
-<div class="add-item add-ingredient"><a>Adcionar novo ingrediente</a></div>
+<div class="add-item add-ingredient"><a>Adicionar novo ingrediente</a></div>
 
 <div class="item" id="step">
     <div>Modo de preparo</div>
@@ -90,7 +92,7 @@
         </div>
     {% endfor %}
 </div>
-<div class="add-item add-step"><a>Adcionar novo passo</a></div>
+<div class="add-item add-step"><a>Adicionar novo passo</a></div>
 
 <div class="item">
     <div>Informações adcionais</div>

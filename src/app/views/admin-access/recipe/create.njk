@@ -2,20 +2,21 @@
 
 
 {% block content %}
+    <form class="card-recipe" method="POST" action="/admin/recipes" enctype="multipart/form-data">
+        <div class="title">
+            <h1>Criando receita</h1>
 
-        <form class="card-recipe" method="POST" action="/admin-access/recipe" enctype="multipart/form-data">
-            <div class="title">
-                <h1>Criando receita</h1>
-                <button type="submit">Salvar receita</button>
-            </div>
-                        
-            <section class="details">
+            <button type="submit">Salvar receita</button>
+        </div>
+        
+        <section class="details">
 
-                {% include 'admin-access/recipe/fields.njk' %}
+            {% include 'admin-access/recipe/fields.njk' %}
+
+        </section>
+            
+    </form>
         
-            </section>
-        </form>
-        {% include "admin-access/recipe/addItems.njk" %}
-        
-        {# <script src="/javascript/script.js"></script> #}
-{% endblock %}
+    {% include "admin-access/recipe/addItems.njk" %}
+
+{% endblock content %}

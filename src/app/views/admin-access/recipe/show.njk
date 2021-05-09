@@ -1,17 +1,17 @@
-{% extends 'layouts/admin.njk' %}
+{% extends "layouts/admin.njk" %}
 
 {% block head %}
-    <title>Receita: {{recipe.title}} | Foodfy</title>
-{% endblock %}
+    <title>{{recipe.title}} | Foodfy</title>
+{% endblock head %}
 
 {% block content %}
     <section class="details">
         <div class="title">
             <h2>Receita: {{recipe.title}}</h2>
-            <a class="button" 
-                href="/admin-access/recipe/{{recipe.id}}/edit"
-                >Editar receita
-            </a>
+
+            {% if sessionIsAdmin.is_admin == true or recipe.user_id == session.userId %}
+                <a class="button" href="/admin/recipes/{{recipe.id}}/edit" type="submit">Editar receita</a>
+            {% endif %}
         </div>
 
         <div class="gallery">
@@ -45,10 +45,10 @@
             </div>         
 
             <div class="gallery-preview">
-                {% for photo in files %}
+                {% for image in files %}
                     <img 
-                        src="{{photo.src}}" 
-                        alt="{{photo.name}}"
+                        src="{{image.src}}" 
+                        alt="{{image.name}}"
                         {% if loop.index0 == 0 %} 
                             class="active" 
                         {% endif %}
@@ -56,8 +56,10 @@
                     >
                 {% endfor %}
             </div>
-        </div>        
-        
+        </div>  
+
+
+
         <div class="title_apresentation">
             <h1>{{recipe.title}}</h1>
             <p>por {{recipe.chef_name}}</p>
@@ -95,4 +97,4 @@
             </div>
         </div>
     </section>
-{% endblock %}
+{% endblock content %}
