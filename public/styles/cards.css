@@ -14,10 +14,6 @@ main h1 {
     cursor: pointer;
 }
 
-.card a {
-    text-decoration: none;
-}
-
 .card:hover {
     background-color: rgb(255, 177, 131);
     transition: 400ms;

@@ -12,37 +12,29 @@
 <div class="item">
     <div>Avatar</div>
     <div>
-        <div id="avatar-upload">
+        <div id="photos-upload">
             <input 
                 type="file" 
                 name="photos" 
                 id="photos-input" 
                 required
-                multiple="multiple" 
                 accept="image/*" 
                 onchange="PhotosUpload.handleFileInput(event)"
             >
-            <p>Enviar Avatar</p>
+            <p>Enviar avatar</p>
         </div>
 
         <div id="photos-preview">
-            
-        </div>
-
-        {# <div id="avatar-photo-preview">
-            {% if chefs %}
-                {% for chef in chefs%}
-                <div class="photo" id="{{chef.id}}">
-                    <img src="{{chef.src}}" alt="{{chef.name}}">
-                    <i class="material-icons"
-                        onclick="PhotosUpload.removeOldPhoto(event)"
-                    >
-                    close
-                    </i>
-                </div>
+            {% if files %}
+                {% for image in files %}
+                    <div class="photo" id="{{image.id}}">
+                        <img src="{{image.src}}" alt="{{image.name}}">
+                        <i class="material-icons" onclick="PhotosUpload.removeOldPhoto(event)">close</i>
+                    </div>
                 {% endfor %}
+
                 <input type="hidden" name="removed_files">
             {% endif %}
-        </div> #}
+        </div>
     </div>
 </div>

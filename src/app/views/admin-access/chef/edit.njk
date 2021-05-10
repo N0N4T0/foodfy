@@ -1,37 +1,39 @@
 {% extends "layouts/admin.njk" %}
 
+{% block head %}
+    <title>Atualizar chef</title>
+{% endblock head %}
 
 {% block content %}
     <main>
         <form 
-            class="card-chef" 
-            action="/admin/chefs/{{chef.index}}?_method=put"
+            class="card-chef"
+            action="/admin/chefs?_method=PUT"
             method="POST"
             enctype="multipart/form-data"
             >
-            
+
             <div class="edit-title">
                 <h1>Editar chef</h1>
-                <button class="button-delete" type="submit" form="form-delete">Deletar</button>
+
+                <button id="button-delete" type="submit" form="form-delete">Deletar</button>
                 <button type="submit">Salvar chef</button>
             </div>
-                        
+
             <section class="details">
 
-                {% include 'admin-access/chefs/fields.njk' %}
+                {% include 'admin-access/chef/fields.njk' %}
         
+                <input type="hidden" name="id" value={{chef.id}}>
             </section>
 
-            <input type="hidden" name="id" value={{chef.id}}>
         </form>
-        
-        <form id="form-delete" action="/admin/chefs/{{chef.index}}?_method=delete" method="post">
-            <input type="hidden" name="id" value={{chef.id}}>
+
+        <form id="form-delete" action="/admin/chefs?_method=DELETE" method="POST">
+            <input type="hidden" name="id" value="{{chef.id}}">
         </form>
     </main>
 
-    {# {% include "admin/chefs/confirmChefDelete.njk" %} #}
+    {% include "admin-access/confirm.njk"%}
 
-
-    {# <script src="/javascript/script.js"></script> #}
-{% endblock %}
+{% endblock content %}

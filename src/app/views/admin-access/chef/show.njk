@@ -1,49 +1,70 @@
 {% extends "layouts/admin.njk" %}
 
 {% block head %}
-    <title>Admin Chefs - Foodfy</title>
-{% endblock %}
+    <title>{{chef.name}} | Foodfy</title>
+{% endblock head %}
 
 {% block content %}
     <main>
         <div class="title">
             <h1>Chef: {{chef.name}}</h1>
-            <a class="button"
-               href="/admin/chefs/{{chef.id}}/edit">
-               Editar chef
-            </a>
-        </div>
-        
-        <div class="chefPosition">
-           {% if not image[0] %}
-                <img src="http://placehold.it/500x500?text=Chef Sem Imagem" alt="">
-            {% else %}
-                <img src="{{image[0].src}}" alt="Foto do Chef">
+
+            {% if sessionIsAdmin.is_admin == true %}
+                <a class="button" href="/admin/chefs/{{chef.id}}/edit" >Editar chef</a>
             {% endif %}
+        </div>
+
+
+
+        {# <div class="image">
+            <img src="{{files[0].src}}" alt="">
+        </div> #}
+
+        <div class="chefPosition">
+            <img src="{{files[0].src}}" alt="">
             <h1>{{chef.name}}</h1>
-            <h3>{{chef.total_recipes}} receitas</h3>
+
+            <h3>
+                {% if chef.total_recipes == 0%}
+                    Nenhuma receita cadastrada
+                {% endif %}
+                {% if chef.total_recipes == 1%}
+                    {{chef.total_recipes}}
+                    receita
+                {% endif %}
+                {% if chef.total_recipes > 1%}
+                    {{chef.total_recipes}}
+                    receitas
+                {% endif %}
+            </h3>
         </div>
 
-        <div class="chefRecipe">
-            <h1>Receitas</h1>
 
-            <div class="cards-admin">
-                        
-                {% for recipe in recipes %}
-                <div class="card-admin" name="{{recipe.title}}">
-                    <div class="card-admin-img">
-                        <img src="{{recipe.image}}" alt="{{recipe.title}}">
-                    </div>
-                    <div class="card-admin-text">
-                        <h2>{{recipe.title}}</h2>
-                        <h3>por {{chef.name}}</h3>
-                        <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
-                    </div>
-                </div>
-                {% endfor %}
+        {% if chef.total_recipes != 0 %}
+            <div class="chefRecipe">
+                <h1>Receitas</h1>
             
-            </div>
-        </div>
+                <div class="cards-admin">
+
+                    {% for recipe in recipes %}
+                        <div class="card-admin" name="{{recipe.title}}">
+                            <div class="card-admin-img">
+                                <img src="{{recipe.image}}" alt="{{recipe.title}}">
+                            </div>
+                            <div class="card-admin-text">
+                                <h2>{{recipe.title}}</h2>
+                                <h3>por {{chef.name}}</h3>
+
+                                <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div> 
+            
+        {% endif %}
 
     </main>
+
 {% endblock content %}

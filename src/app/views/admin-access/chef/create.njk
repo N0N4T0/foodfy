@@ -1,22 +1,23 @@
 {% extends "layouts/admin.njk" %}
 
 {% block head %}
-    <title>Admin Chefs - Foodfy</title>
-{% endblock %}
+    <title>Cadastrar chef | Foodfy</title>
+{% endblock head %}
 
 {% block content %}
     <main>
-        <form action="/admin/chefs" method="POST" enctype="multipart/form-data">
+        <form method="POST" action="/admin/chefs" enctype="multipart/form-data">
             <div class="title">
                 <h1>Criando chef</h1>
+
                 <button type="submit">Salvar chef</button>
             </div>
-        
+
             <section class="details">
 
-                {% include 'admin-access/chefs/fields.njk' %}
+                {% include 'admin-access/chef/fields.njk' %}
 
             </section>
         </form>
     </main>
-{% endblock %}
+{% endblock content %}
