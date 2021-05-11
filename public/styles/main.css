@@ -34,7 +34,7 @@ main {
 }
 
 main, .cards {
-    max-width: 940px;
+    width: 940px;
 }
 
 .menu {
@@ -188,6 +188,10 @@ footer h3 {
 .pagination a:hover {
     filter: brightness(0.3);
     border-bottom: 1px solid #111111;
+}
+
+button[type="submit"].red{
+    background-color: red;
 }
 
 /* .pages-list{

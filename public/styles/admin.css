@@ -22,12 +22,17 @@
 }
 
 
-.card-recipe {
+.card-recipe, .card-user {
     min-height: 400px;
 
-    max-width: 940px;
+    width: 940px;
     margin: 0 auto 76px auto;
 }
+
+.card-user{
+    margin: 36px auto 40px;
+}
+
 
 .title {
     display: grid;
@@ -707,6 +712,15 @@ input, select {
 
 .menu_width form button.login:hover{
     font-weight: bolder;
+}
+
+
+.item-profile {
+    margin-bottom: 40px;
+}
+
+.item-profile-password{
+    margin-top: 40px;
 }
 
 

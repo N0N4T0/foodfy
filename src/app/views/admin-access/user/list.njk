@@ -1,0 +1,39 @@
+{% extends "layouts/admin.njk" %}
+
+{% block head %}
+    <title>Admin - Usuários</title>
+{% endblock head %}
+
+{% block content %}
+    <main>
+        <div class="title">
+            <h1>Usuários</h1>
+
+            {% if sessionIsAdmin.is_admin == true %}
+                <a class="button" href="/admin/users/create">
+                    Novo
+                </a>
+            {% endif %}
+        </div>
+
+        <div class="cards-admin-users">
+
+            {% for user in users %}
+
+                {% if sessionIsAdmin.is_admin == true or session.userId == user.id %}
+                    <div class="card-admin-user">
+                        <h2>{{user.name}}</h2>
+                        <h3>{{user.email}}</h3>
+
+                        <div class="user-action">
+                            {% if session.userId == user.id or sessionIsAdmin.is_admin == true %}
+                                <a class="edit" href="/admin/users/{{user.id}}/edit">Editar</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+        </div>
+    </main>
+{% endblock content %}

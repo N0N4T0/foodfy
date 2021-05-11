@@ -17,7 +17,19 @@
             </div>
             <div class="chefsText">
                 <h1>{{chef.name}}</h1>
-                <h3>{{chef.total_recipes}} receitas</h3>
+                <h3>
+                    {% if chef.total_recipes == 0%}
+                        Nenhuma receita cadastrada
+                    {% endif %}
+                    {% if chef.total_recipes == 1%}
+                        {{chef.total_recipes}}
+                        receita
+                    {% endif %}
+                    {% if chef.total_recipes > 1%}
+                        {{chef.total_recipes}}
+                        receitas
+                    {% endif %}
+                </h3>
             </div>
         </div>
         {% endfor %}

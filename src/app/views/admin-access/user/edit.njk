@@ -1,0 +1,90 @@
+{% extends "layouts/admin.njk" %}
+
+{% block head %}
+    <title>Admin usuário</title>
+{% endblock head %}
+
+{% block content %}
+
+    <form 
+        class="card-user"
+        action="/admin/users?_method=PUT"
+        method="POST" 
+        >
+        <div class="edit-title item-profile">
+            <h1>Editando {{user.name}}</h1>
+
+            {% if sessionIsAdmin.is_admin == true and session.userId != user.id and user.is_admin == false %}
+                <button class="button red" type="submit" form="form-delete">Deletar</button>
+            {% endif %}
+            <button type="submit">Salvar</button>
+        </div>
+
+
+        <div class="item item-profile">
+            <div>Nome</div>
+            <div>
+                <input 
+                    type="text" name="name" value="{{user.name}}" 
+                    required="required"
+                >
+            </div>
+        </div>
+
+        <div class="item">
+            <div>Email</div>
+            <div>
+                <input 
+                    type="email" name="email" value="{{user.email}}"
+                    required="required"
+                >
+            </div>
+        </div>
+
+        {% if session.userId == user.id %}
+
+            <div class="item item-profile-password">
+                <div>Senha</div>
+                <div>
+                    <input 
+                        type="password"
+                        name="password"
+                        value="{{user.password}}" required="required">
+                </div>
+            </div>
+        {% endif %}
+
+
+        {% if sessionIsAdmin.is_admin == true and session.userId != user.id and user.is_admin == false %}
+            <div>
+                <div class="checkbox-admin">
+                    <input 
+                        id="isAdmin"
+                        type="checkbox" 
+                        name="is_admin"
+                        {% if user.is_admin %}
+                        checked="checked"
+                        {% endif %}
+                    >
+
+                    <div>Administrador</div>
+                </div>
+            </div>
+            
+            {# <input type="checkbox" id="isAdmin" name="isAdmin" value="true">
+            <label for="isAdm">Administrador</label><br> #}
+        {% endif %}
+
+        <input type="hidden" name="passwordHidden" value="{{user.password}}">
+        <input type="hidden" name="is_adminHidden" value="{{user.is_admin}}">
+        <input type="hidden" name="id" value="{{user.id}}">
+
+    </form>
+
+    <form id="form-delete" action="/admin/users?_method=DELETE" method="POST">
+        <input type="hidden" name="id" value="{{user.id}}">
+    </form>
+
+    {% include "admin-access/confirm.njk"%}
+
+{% endblock content %}

@@ -1,0 +1,48 @@
+{% extends "layouts/admin.njk" %}
+
+{% block head %}
+    <title>Cadastrar usuário</title>
+{% endblock head %}
+
+{% block content %}
+
+    <form class="card-recipe" method="POST" action="/admin/users/create">
+        <div class="title">
+            <h1>Criar Usuário</h1>
+            <div>
+                <a class="button" href="/admin/users">
+                    Cancelar
+                </a>
+                <button type="submit">Salvar</button>
+            </div>
+        </div>
+
+        <section class="details user-details">
+
+            {% include 'admin-access/user/fields.njk' %}
+        
+        </section>
+
+        {# <div class="inputs">
+
+            <div class="item">
+                <p>Nome</p>
+
+                <input type="text" name="name" placeholder="Digite o nome completo" required="required">
+            </div>
+
+            <div class="item">
+                <p>Email</p>
+                <div class="input">
+                    <input type="email" name="email" placeholder="Digite o email" required="required">
+                </div>
+            </div>
+
+        </div>
+
+        <input type="checkbox" id="isAdmin" name="isAdmin" value="true">
+        <label for="isAdm">Administrador</label><br> #}
+
+    </form>
+
+{% endblock content %}
