@@ -10,22 +10,29 @@
 
 {% block content %}
     <main>
+        {# <section> #}
         <section>
             <div class="gallery">
                 <div class="highlight">
-                    {% if not files[0] %}
-                        <img
+                    {# {% if not files[0] %}
+                        <img 
                             src="http://placehold.it/500x500?text=Produto Sem Foto" 
                             alt="Produto Sem Foto"
-                        >
+                        />
                     {% else %}
                         <img 
-                            src="{{files[0].src}}"
-                            alt="{{files[0].name}}"
-                            onclick="Lightbox.open()"    
+                            src="{{recipe.image}}" 
+                            alt="{{recipe.title}}" 
+                            onclick="Lightbox.open()"
                         >  
-                    {% endif %}
+                    {% endif %} #}
 
+                    <img 
+                            src="{{recipe.image}}" 
+                            alt="{{recipe.title}}" 
+                            onclick="Lightbox.open()"
+                        >  
+                
                     <div class="lightbox-target">
                         <img src="{{files[0].src}}" alt="{{files[0].name}}">
                             <a 
@@ -39,13 +46,13 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div>         
 
                 <div class="gallery-preview">
-                    {% for photo in files %}
+                    {% for image in files %}
                         <img 
-                            src="{{photo.src}}" 
-                            alt="{{photo.name}}"
+                            src="{{image.src}}" 
+                            alt="{{image.name}}"
                             {% if loop.index0 == 0 %} 
                                 class="active" 
                             {% endif %}
@@ -53,12 +60,22 @@
                         >
                     {% endfor %}
                 </div>
-            </div>   
+            
             
             <h1>{{recipe.title}}</h1>
             <p>por {{recipe.chef_name}}</p>
         </section>
         
+
+        
+            {# <img src="{{recipe.image}}" alt="">
+            
+            <h1>{{recipe.title}}</h1>
+            <p>por {{recipe.chef_name}}</p>
+        </section> #}
+
+
+
         <div class="recipe-information">
             <div class="ingredientes">
                 <h2>Ingredientes</h2>
@@ -98,7 +115,6 @@
         </div>
     </main>
     
-    {% include "main/hideShow.njk" %}
+    {% include "public-access/hideShow.njk" %}
 
-    <script src="/javascript/script.js"></script>
 {% endblock %}

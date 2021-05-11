@@ -96,7 +96,7 @@ module.exports = {
         }
 
 
-        return res.render("public-access/recipe/specific", { recipe });
+        return res.render("public-access/recipe/specific", { recipe, files });
     },
 
     async chefs(req, res) {

@@ -1,17 +1,17 @@
 //Selecionar active por página
-const currentPage = location.pathname
+let local = location.pathname
 const menuItems = document.querySelectorAll(".menu .menu_width a")
 
 for (item of menuItems){
-    if (currentPage.includes(item.getAttribute("href"))){
+    if (local.includes(item.getAttribute("href"))){
         item.classList.add("active")
     }
 }
-console.log(currentPage)
+console.log(local)
 
 
 let uploadLimit = 5
-if(currentPage.includes("chefs")){
+if(local.includes("chefs")){
     uploadLimit = 1
 }
 

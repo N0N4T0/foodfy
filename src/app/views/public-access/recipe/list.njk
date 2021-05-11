@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="/styles/receitas.css"> 
 {% endblock %}
 
+{% block search %}
+    <form id="search" action="/recipes" method="get">
+        <input 
+            type="text" 
+            name="filter" 
+            placeholder="Buscar uma receita" 
+            value="{{filter}}"
+        >
+
+        <button type="submit">Buscar</button>
+    </form>
+
+{% endblock search %}
 
 {% block content %}
 
@@ -25,44 +38,15 @@
     <div class="cards">
             
         {% for recipe in recipes %}
-            <div class="card" id="{{recipe.id}}" name="{{recipe.title}}">
-                    <img src="{{recipe.image}}" alt="{{recipe.title}}">
-                    <h2>{{recipe.title}}</h2>
-                    <h3>por {{recipe.chef_name}}</h3>
-            </div>
+
+            <div class="card" id="{{recipe.id}}">
+                <img src="{{recipe.image}}" alt="{{recipe.title}}">
+                <h2>{{recipe.title}}</h2>
+                <h3>por {{recipe.chef_name}}</h3>
+            </div>          
         {% endfor %}
            
     </div>
-
-    <div class="modal-overlay">
-        <div class="modal">
-            <div class="modal-content">
-                <div class="card-image">
-                    <img class="image-modal" src="" alt="">
-                </div>
-                <div class="modal-card-title">
-                    <p class="title-modal"></p>
-                </div>
-                <div class="modal-card-info">
-                    <p class="info-modal"></p>
-                </div>
-
-                 <a href="/recipe/{{recipe.id}}">
-                    Ver receita
-                </a>
-
-                <div class="close-modal">
-                    <a>Fechar modal</a>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    
-
-
-
 
     <div class="pagination" 
             data-page={{pagination.page}}
@@ -70,7 +54,6 @@
             data-filter={{filter}}
     ></div>
 
-    <script src="/javascripts/public-access/recipe/list.js"></script>
-    <script src="/javascript/script.js"></script>
+    {% include "public-access/pagination.njk" %}
 
 {% endblock %}
