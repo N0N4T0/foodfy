@@ -38,33 +38,19 @@
         <h1>Mais acessados</h1>
 
         <div class="cards">
-            {# {% for i in range(0, 6) %}
+            {% for i in range(0, 6) %}
                 {% if recipes[i] %}
-                    <div class="card" name="{{recipe.title}}">
+                    <div class="card" name="{{recipes.title}}">
 
-                        <a href="/recipe/{{recipe.id}}">
-                            <img src="{{recipe[i].image}}" alt="">
-                            <h2>{{recipe[i].title}}</h2>
-                            <h3>por {{recipe[i].chef_name}}</h3>
+                        <a href="/recipes/{{recipes.id}}">
+                            <img src="{{recipes[i].image}}" alt="">
+                            <h2>{{recipes[i].title}}</h2>
+                            <h3>por {{recipes[i].chef_name}}</h3>
                         </a>
                     </div>
                 {% endif %}
 
-            {% endfor %} #}
-
-
-
-
-            {% for recipe in recipes %}
-            <div class="card" name="{{recipe.title}}">
-                <a href="/recipes/{{recipe.id}}">
-                    <img src="{{recipe.image}}" alt="{{recipe.title}}">
-                    <h2>{{recipe.title}}</h2>
-                    <h3>por {{recipe.chef_name}}</h3>
-                </a>
-            </div>
             {% endfor %}
-
         </div>
 
     </main>

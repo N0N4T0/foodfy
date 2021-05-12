@@ -61,7 +61,7 @@
                     <input 
                         id="isAdmin"
                         type="checkbox" 
-                        name="is_admin"
+                        name="isAdmin"
                         {% if user.is_admin %}
                         checked="checked"
                         {% endif %}
@@ -71,8 +71,6 @@
                 </div>
             </div>
             
-            {# <input type="checkbox" id="isAdmin" name="isAdmin" value="true">
-            <label for="isAdm">Administrador</label><br> #}
         {% endif %}
 
         <input type="hidden" name="passwordHidden" value="{{user.password}}">
